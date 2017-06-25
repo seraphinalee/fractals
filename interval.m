@@ -1,7 +1,7 @@
 
 m=5;
 p=0.5;
-q=0.99;
+q=0.5;
 measure = [p/2 (1-p)/2 (1-p)/2 p/2];
 resistance = [q/2 (1-q)/2 (1-q)/2 q/2];
 for i = 2:m
