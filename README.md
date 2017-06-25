@@ -1,2 +1,2 @@
 # fractals
-spur 2017
+SPUR 2017
