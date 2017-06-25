@@ -1,5 +1,5 @@
 
-m=5;
+m=4;
 p=0.5;
 q=0.5;
 measure = [p/2 (1-p)/2 (1-p)/2 p/2];
@@ -12,23 +12,20 @@ for i = 2:m
 end
 laplacian=zeros(4^m-1,4^m-1);
 for i = 1:4^m-1
-    for j = 1:4^m-1
-        if i==j
-            avgmeasure = (measure(i)+measure(i+1))/2;
-            laplacian(i,j) = (1/avgmeasure)*(1/resistance(i)+1/resistance(i+1));
-        end
-        if i+1==j
-            avgmeasure = (measure(i)+measure(i+1))/2;
-            laplacian(i,j) = (1/avgmeasure)*(-1/resistance(i+1));
-        end
-        if i-1==j
-            avgmeasure = (measure(i)+measure(i+1))/2;
-            laplacian(i,j) = (1/avgmeasure)*(-1/resistance(i));
-        end
-    end
+    avgmeasure = (measure(i)+measure(i+1))/2;
+    laplacian(i,i) = (1/avgmeasure)*(1/resistance(i)+1/resistance(i+1));
+end
+for i = 1:4^m-2
+    avgmeasure = (measure(i)+measure(i+1))/2;
+    laplacian(i,i+1) = (1/avgmeasure)*(-1/resistance(i+1));
+end
+for i = 2:4^m-1
+    avgmeasure = (measure(i)+measure(i+1))/2;
+    laplacian(i,i-1) = (1/avgmeasure)*(-1/resistance(i));
 end
 [V,D] = eig(laplacian);
-plot(linspace(0,1,4^m-1)',[V(:,1:5)*(1/0.0221)*2^(m-6) (resistance(2:end).*(1/max(resistance)))'])
+V = V*(1/(max(max(V))));
+plot(linspace(0,1,4^m-1)',[V(:,1:end) (resistance(2:end).*(1/max(resistance)))'])
 
 
     
