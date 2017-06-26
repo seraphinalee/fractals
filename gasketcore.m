@@ -1,4 +1,4 @@
-m=6;
+m=5;
 mu0 = 0.5;
 r0 = 1;
 r1 = 1;
@@ -10,7 +10,6 @@ end
 
 laplacian = zeros(1/2*(3^(m+1)-3));
 for i = 1:length(gasket_points)
-    disp(gasket_points(i))
     if not(all(gasket_points(:,i)-max(gasket_points(:,i)==0)))
         neighbors = pointneighbors(gasket_points(:,i));
         [cell1,cell2] = pointcells(gasket_points(:,i));
@@ -21,9 +20,8 @@ for i = 1:length(gasket_points)
         end
     end
 end
+[V,D]=eig(laplacian);
 
-
-
-%gasket_points = [gasket_points; zeros(1,length(gasket_points))];
-%[a,b,c]=gasketgraph(gasket_points);
-%scatter3(a,b,c)
+gasket_points = [gasket_points; V(:,1)'];
+[a,b,c]=gasketgraph(gasket_points);
+scatter3(a,b,c)
