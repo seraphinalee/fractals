@@ -6,7 +6,7 @@ Y = zeros(length(gasketdata),1);
 Z = zeros(length(gasketdata),1);
 f0 = @(x) 1/2*(x-[0.5,tan(60)*0.5]) + [0.5,tan(60)*0.5];
 f1 = @(x) 1/2*(x-[1,0]) + [1,0];
-f2 = @(x) 1/2*(x-[0,1]) + [0,1];
+f2 = @(x) 1/2*(x-[0,0]) ;
 for i = 1:length(gasketdata)
     if gasketdata(1,i) == 0
         cartesian = [0.5,tan(60)*0.5];
@@ -15,7 +15,7 @@ for i = 1:length(gasketdata)
         cartesian = [1,0];
     end
     if gasketdata(1,i) == 2
-        cartesian = [0,1];
+        cartesian = [0,0];
     end
     for j = 2:length(gasketdata(:,i))-1
        if gasketdata(j,i) == 0
