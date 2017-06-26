@@ -9,5 +9,6 @@ end
 index = 10;
   index = index + offset*3^m;
 index = index + base2dec(num2str(address(3:end))',3);
+
 end
 
