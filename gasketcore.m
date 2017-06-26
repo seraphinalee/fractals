@@ -5,4 +5,7 @@ for i = 1:m-1
     gasket_points = [gasket_points; repmat([0 1 2],1,6*3^(i-1))]
 end
 
+
+
+
     
