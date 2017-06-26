@@ -6,7 +6,7 @@ function [ index ] = addresstoindex( address)
 if all(address(1:2) == [2;0])
   offset = 5;
 end
-index = 10;
+index = 1;
   index = index + offset*3^m;
 index = index + base2dec(num2str(address(3:end))',3);
 
