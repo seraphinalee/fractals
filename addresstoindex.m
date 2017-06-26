@@ -4,5 +4,6 @@ function [ index ] = addresstoindex( address)
 m = length(address)
 
 
+
 end
 
