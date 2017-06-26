@@ -2,8 +2,8 @@ function res = edgeresistance( x, y, r0, r1 )
 %x and y are points
 %ra is the resistance on the outer cells, rb is on inner cells
 
-cells = pointneighbors(x);
-cells2 = pointneighbors(y);
+cells = pointcells(x);
+cells2 = pointcells(y);
 intersection = intersect(cells',cells2','rows')';
 
 res = 1;
