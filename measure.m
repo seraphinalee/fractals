@@ -2,10 +2,10 @@
 %mua is measure on the outer cells, mub is measure on the inner cells
 %3mua+6mub = 1
 function measure = measure(cell, mua)
-mub = (1-3mua)/6;
+mub = (1-3*mua)/6;
 measure = 1;
 for i = 1:len(cell)/2
-    if cell(2i) == cell(2i+1)
+    if cell(2i-1) == cell(2i)
         measure = measure*mua;
     else
         measure = measure*mub;
