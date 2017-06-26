@@ -5,7 +5,7 @@ neighbors = pointneighbors(x);
 is_neighbor = false;
 
 for i=1:len(neighbors)
-    if equals(y, neighbors(i))
+    if all(neighbors(i)==y)
         is_neighbor = true;
     end
 end
