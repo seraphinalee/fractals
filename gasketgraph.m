@@ -1,4 +1,4 @@
-function [ output ] = gasketgraph( gasketdata )
+function [X Y Z] = gasketgraph( gasketdata )
 %UNTITLED9 Summary of this function goes here
 %   Detailed explanation goes here
 X = zeros(length(gasketdata),1);
@@ -19,18 +19,19 @@ for i = 1:length(gasketdata)
     end
     for j = 2:length(gasketdata(:,i))-1
        if gasketdata(j,i) == 0
-           cartesian = f0(cartesian)
+           cartesian = f0(cartesian);
        end
        if gasketdata(j,i) == 1
-           cartesian = f1(cartesian)
+           cartesian = f1(cartesian);
        end
        if gasketdata(j,i) == 2
-           cartesian = f2(cartesian)
+           cartesian = f2(cartesian);
        end
     end
     X(i,1) = cartesian(1);
     Y(i,1) = cartesian(2);
-    Z(i,1) = gasketdata(i,end);
+    disp(Z)
+    Z(i,1) = gasketdata(end,i);
 end
 end
 
