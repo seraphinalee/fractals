@@ -1,6 +1,6 @@
 
-m=4;
-p=0.5;
+m=5;
+p=0.7;
 q=0.5;
 measure = [p/2 (1-p)/2 (1-p)/2 p/2];
 resistance = [q/2 (1-q)/2 (1-q)/2 q/2];
@@ -25,7 +25,7 @@ for i = 2:4^m-1
 end
 [V,D] = eig(laplacian);
 V = V*(1/(max(max(V))));
-plot(linspace(0,1,4^m-1)',[V(:,1:100) (resistance(2:end).*(1/max(resistance)))'])
+plot(linspace(0,1,4^m-1)',[V(:,end-1:end) (measure(2:end).*(1/max(measure)))'])
 
 
     
