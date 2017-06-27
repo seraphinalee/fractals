@@ -20,19 +20,16 @@ for i = 1:4^m-1
     avgmeasure = (measure(i)+measure(i+1))/2;
     laplacian(i,i) = (1/avgmeasure)*(1/resistance(i)+1/resistance(i+1));
 end
-%... and for the right neighbors
+%
 for i = 1:4^m-2
     avgmeasure = (measure(i)+measure(i+1))/2;
     laplacian(i,i+1) = (1/avgmeasure)*(-1/resistance(i+1));
 end
-%... and for the left neighbors
 for i = 2:4^m-1
     avgmeasure = (measure(i)+measure(i+1))/2;
     laplacian(i,i-1) = (1/avgmeasure)*(-1/resistance(i));
 end
-%compute eigenfunction/values
 [V,D] = eig(laplacian);
-%rescale and plot
 V = V*(1/(max(max(V))));
 plot(linspace(0,1,4^m-1)',[V(:,end-1:end) (measure(2:end).*(1/max(measure)))'])
 
