@@ -1,4 +1,5 @@
 m=6;%this value needs to be even because we are twice iterating
+%definitely have to stop at m=8
 mu0 = 1/9; %measure on outside triangles, 0 to 1/3
 r0 = (3/5)^2; %resistance on outside triangles
 r1 = (3/5)^2;%resistance on inside triangles
