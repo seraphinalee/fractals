@@ -21,9 +21,12 @@ end
 %define the laplacian, first with zeros..
 laplacian = zeros(1/2*(3^(m+1)-3));
 
-mu0 = 1/9;
-r0 = (3/5)^2;
-r1 = (3/5)^2;
+%mu0 = 1/9;
+%r0 = (3/5)^2;
+%r1 = (3/5)^2;
+mu0 = 0.3019;
+r0 = 0.8147;
+r1 = 15.6668;
     
 %then for each gasket point...
 for i = 1:length(gasket_points)
@@ -50,7 +53,7 @@ end
 
 %table of eigenvalues here probably
 eigvals = sort(real(diag(D)))';
-unique_eigvals = uniquetol(eigvals,0.01);
+unique_eigvals = uniquetol(eigvals,0.01/max(eigvals));
 unique_eigvals = [unique_eigvals ;zeros(1,length(unique_eigvals))];
 for i =1:length(unique_eigvals)
     unique_eigvals(2,i) = sum(abs(eigvals-unique_eigvals(1,i))<0.01);
@@ -69,7 +72,7 @@ end
 %    clf
 %end
  
-
-%gasket_points = [gasket_points boundary; V(:,200)' 0 0 0];
-%[a,b,c]=gasketgraph(gasket_points);
-%scatter3(a,b,c,'.')
+    
+gasket_points = [gasket_points boundary; V(:,1)' 0 0 0];
+[a,b,c]=gasketgraph(gasket_points);
+scatter3(a,b,c,'.')
