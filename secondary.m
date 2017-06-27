@@ -26,6 +26,7 @@ for i= 1:length(point)
             point(1:i-1) = point(i-1);
             return
         end
+        return
     end
 end
 end

@@ -21,12 +21,16 @@ end
 %define the laplacian, first with zeros..
 laplacian = zeros(1/2*(3^(m+1)-3));
 
-mu0 = 1/9;
-r0 = (3/5)^2;
-r1 = (3/5)^2;
-%mu0 = 1/6;
-%r0 = 0.5;
-%r1 = 1;
+
+
+
+
+%mu0 = 1/9;
+%r0 = (3/5)^2;
+%r1 = (3/5)^2;
+mu0 = 1/6;
+r0 = 0.5;
+r1 = 1/4;
     
 %then for each gasket point...
 for i = 1:length(gasket_points)
@@ -71,7 +75,8 @@ end
 %here we just walk through a bunch of gasket graphs looking for one that is
 %interesting
 for i=1:100
-    temp = [gasket_points boundary; V(:,randi(length(V)))' 0 0 0];
+    %temp = [gasket_points boundary; V(:,randi(length(V)))' 0 0 0];
+    temp = [gasket_points boundary; V(:,i)' 0 0 0];
     [a,b,c]=gasketgraph(temp);
     scatter3(a,b,c,'.')
     pause()
@@ -79,6 +84,6 @@ for i=1:100
 end
  
     
-%gasket_points = [gasket_points boundary; V(:,1)' 0 0 0];
-%[a,b,c]=gasketgraph(gasket_points);
-%scatter3(a,b,c,'.')
+gasket_points = [gasket_points boundary; V(:,2)' 0 0 0];
+[a,b,c]=gasketgraph(gasket_points);
+scatter3(a,b,c,'.')
