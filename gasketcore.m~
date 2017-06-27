@@ -21,12 +21,11 @@ end
 %define the laplacian, first with zeros..
 laplacian = zeros(1/2*(3^(m+1)-3));
 
-for k=1:4 %can iterate however many times we want?
+for j=1:4
     r0 = rand; %resistance on outside triangles
     mu0 = rand/3; %measure on outside triangles, 0 to 1/3
     mu1 = 1-mu0;
     r1 = r0*mu0/mu1; %resistance on inside triangles
-    
 %then for each gasket point...
 for i = 1:length(gasket_points)
     %find the neighbors, and adjacent cells with their measure (pointmass)
@@ -48,8 +47,7 @@ for i = 1:length(gasket_points)
 end
 %find the eigenvectors/values for the laplacian
 [V,D]=eig(laplacian);
-
-%table of eigenvalues here probably
+end
 
 %here we just walk through a bunch of gasket graphs looking for one that is
 %interesting
@@ -61,7 +59,7 @@ for i=1:100
     clf
 end
  
-end
+
 
 %gasket_points = [gasket_points boundary; V(:,200)' 0 0 0];
 %[a,b,c]=gasketgraph(gasket_points);
