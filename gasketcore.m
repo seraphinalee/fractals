@@ -1,6 +1,7 @@
 m=6;%this value needs to be even
 mu0 = 1/9;
-r1 = 1;
+r0 = (3/5)^2
+r1 = (3/5)^2;
 boundary = [[0;0] [1;1] [2;2]];
 gasket_points = [[0;1] [1;2] [2;0]];
 
@@ -29,6 +30,6 @@ for i = 1:length(gasket_points)
 end
 [V,D]=eig(laplacian);
 
-gasket_points = [gasket_points boundary; V(:,1)' 0 0 0];
+gasket_points = [gasket_points boundary; V(:,200)' 0 0 0];
 [a,b,c]=gasketgraph(gasket_points);
 scatter3(a,b,c)
