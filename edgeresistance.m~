@@ -5,13 +5,13 @@ function res = edgeresistance( x, y, r0, r1 )
 %find the two neighboring cells for each neighbor, and the intersection
 [cella cellb] = pointcells(x);
 [cell1 cell2] = pointcells(y);
-intersection = intersect([cella cellb]', [cell1 cell2]','rows')';
+intersection = intersect(cells',cells2','rows')';
 
 
 %iterate through by pairs of addresses (first is q)
 %same maps gives r0, diff gives r1
 res = 1;
-for i = 1:(length(intersection))/2
+for i = 1:(length(intersection)-1)/2
     if intersection(2*i-1) == intersection(2*i)
         res = res*r0;
     else

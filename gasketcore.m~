@@ -1,4 +1,4 @@
-m=6;%this value needs to be even because we are twice iterating
+m=2;%this value needs to be even because we are twice iterating
 %definitely have to stop at m=8
 
 %boundary and internal points for point gen
@@ -21,12 +21,12 @@ end
 %define the laplacian, first with zeros..
 laplacian = zeros(1/2*(3^(m+1)-3));
 
-mu0 = 1/9;
-r0 = (3/5)^2;
-r1 = (3/5)^2;
-%mu0 = 1/6;
-%r0 = 0.5;
-%r1 = 1;
+%mu0 = 1/9;
+%r0 = (3/5)^2;
+%r1 = (3/5)^2;
+mu0 = 1/6;
+r0 = 0.5;
+r1 = 1;
     
 %then for each gasket point...
 for i = 1:length(gasket_points)
@@ -49,7 +49,11 @@ for i = 1:length(gasket_points)
             resistance = edgeresistance(gasket_points(:,i),neighbors(:,j),r0,r1);
             %assign value for the laplacian, +/- based on direction
             %the daig eventually collects all 4 by addition
-            laplacian(i,i) = laplacian(i,i) + pointmass / resistance;     
+            laplacian(i,indexMap(mat2str(neighbors(:,j)))) = - pointmass / resistance;
+            laplacian(i,i) = laplacian(i,i) + pointmass / resistance;
+            
+            
+            
         end
     end
 end
@@ -70,15 +74,15 @@ end
 
 %here we just walk through a bunch of gasket graphs looking for one that is
 %interesting
-for i=1:100
-    temp = [gasket_points boundary; V(:,randi(length(V)))' 0 0 0];
-    [a,b,c]=gasketgraph(temp);
-    scatter3(a,b,c,'.')
-    pause()
-    clf
-end
+%for i=1:100
+%    temp = [gasket_points boundary; V(:,randi(length(V)))' 0 0 0];
+%    [a,b,c]=gasketgraph(temp);
+%    scatter3(a,b,c,'.')
+%    pause()
+%    clf
+%end
  
     
-%gasket_points = [gasket_points boundary; V(:,1)' 0 0 0];
-%[a,b,c]=gasketgraph(gasket_points);
-%scatter3(a,b,c,'.')
+gasket_points = [gasket_points boundary; V(:,1)' 0 0 0];
+[a,b,c]=gasketgraph(gasket_points);
+scatter3(a,b,c,'.')
