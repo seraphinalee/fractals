@@ -50,16 +50,25 @@ end
 [V,D]=eig(laplacian);
 
 %table of eigenvalues here probably
+eigvals = sort(real(diag(D)))';
+unique_eigvals = uniquetol(eigvals,0.01);
+unique_eigvals = [unique_eigvals ;zeros(1,length(unique_eigvals))];
+for i =1:length(unique_eigvals)
+    unique_eigvals(2,i) = sum(abs(eigvals-unique_eigvals(1,i))<0.01);
+end
+    
+
+
 
 %here we just walk through a bunch of gasket graphs looking for one that is
 %interesting
-for i=1:100
-    temp = [gasket_points boundary; V(:,randi(length(V)))' 0 0 0];
-    [a,b,c]=gasketgraph(temp);
-    scatter3(a,b,c,'.')
-    pause()
-    clf
-end
+%for i=1:100
+%    temp = [gasket_points boundary; V(:,randi(length(V)))' 0 0 0];
+%    [a,b,c]=gasketgraph(temp);
+%    scatter3(a,b,c,'.')
+%    pause()
+%    clf
+%end
  
 end
 
