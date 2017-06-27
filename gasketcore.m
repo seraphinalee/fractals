@@ -22,9 +22,9 @@ end
 laplacian = zeros(1/2*(3^(m+1)-3));
 
 for k=1:4 %can iterate however many times we want?
-    r0 = rand; %resistance on outside triangles
+    r0 = rand; %resistance on outside triangles, might want to make this 1
     mu0 = rand/3; %measure on outside triangles, 0 to 1/3
-    mu1 = 1-mu0;
+    mu1 = (1-3*mu0)/6;
     r1 = r0*mu0/mu1; %resistance on inside triangles
     
 %then for each gasket point...
