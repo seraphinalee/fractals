@@ -11,8 +11,10 @@ for i=1:length(gasket_points)
     indexMap(mat2str(gasket_points(:,i))) = i;
 end
 
-rvals = [1 2 3 4 0.1 0.2]; %fill in the values you want to test here, between 0 and infinity
-mu0vals = [1/9 1/4 1/5];  %fill in the values you want to test here, between 0 and 1/3
+mu0vals = [1/50 1/15 1/9 1/5 0.9/3];  %fill in the values you want to test here, between 0 and 1/3
+%rvals = [0.1 0.5 1 2 5 10]; %fill in the values you want to test here, between 0 and infinity
+rvals = ones(1,length(mu0vals))./(6*mu0vals)-1/2;
+
 
 for rdex = linspace(1,length(rvals),length(rvals))%r vals, a list of indices (1 to n)
     for mu0dex = linspace(1,length(mu0vals),length(mu0vals))%mu vals, a list of indices (1 to m)
