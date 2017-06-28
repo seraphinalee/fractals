@@ -1,10 +1,10 @@
-m=8;%this value needs to be even because we are twice iterating
+m=6;%this value needs to be even because we are twice iterating
 %definitely have to stop at m=8
 
 loops = 100;
 F(loops) = struct('cdata',[],'colormap',[]);
-index = 0
-for mu0 = linspace(0.1/3,0.9/3,loops)
+index = 0;
+for r0 = linspace(0.1*(3/5)^2,10*(3/5)^2,loops)
     index = index + 1;
     %boundary and internal points for point gen
     boundary = [[0;0] [1;1] [2;2]];
@@ -30,8 +30,8 @@ for mu0 = linspace(0.1/3,0.9/3,loops)
 
 
 
-    %mu0 = 1/9;
-    r0 = (3/5)^2;
+    mu0 = 1/9;
+    %r0 = (3/5)^2;
     r1 = (3/5)^2;
     %mu0 = 1/6;
     %r0 = 0.5;
@@ -74,3 +74,8 @@ for mu0 = linspace(0.1/3,0.9/3,loops)
     F(index) = getframe;
     close
 end
+v = VideoWriter('ranimation.avi');
+open(v);
+writeVideo(v,F);
+close(v);
+
