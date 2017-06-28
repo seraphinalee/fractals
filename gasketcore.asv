@@ -1,4 +1,4 @@
-m=8;%this value needs to be even because we are twice iterating
+m=4;%this value needs to be even because we are twice iterating
 %definitely have to stop at m=8
 
 %boundary and internal points for point gen
@@ -59,11 +59,10 @@ for i = 1:length(gasket_points)
 end
 
 %find the eigenvectors/values for the laplacian
-[V,D]=eigs(laplacian,10,'sm');
+[V,D]=eig(laplacian);
 
-
-[eigvals,indices] = sort(real(diag(D)));
-eigvals = eigvals';
+%table of eigenvalues here probably
+[eigvals,indices] = sort(real(diag(D)))';
 unique_eigvals = uniquetol(eigvals,0.01/max(eigvals));
 unique_eigvals = [unique_eigvals ;zeros(1,length(unique_eigvals))];
 for i =1:length(unique_eigvals)
@@ -76,8 +75,8 @@ end
 %here we just walk through a bunch of gasket graphs looking for one that is
 %interesting
 for i=1:100
-    %temp = [gasket_points boundary; V(:,randi(length(V)))' 0 0 0];
-    temp = [gasket_points boundary; V(:,indices(i))' 0 0 0];
+    temp = [gasket_points boundary; V(:,randi(length(V)))' 0 0 0];
+    temp = [gasket_points boundary; V(:,i)' 0 0 0];
     [a,b,c]=gasketgraph(temp);
     scatter3(a,b,c,'.')
     pause()
