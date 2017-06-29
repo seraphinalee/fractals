@@ -7,7 +7,7 @@ import scipy.io as sio
 #ideally all running in the same folder but you can adjust if needed
 myfilename = 'mymat.mat'
 outfilename = 'mylatex.tex'
-matrixname = 'list'
+matrixname = 'unique_eigvals'
 
 output = open(outfilename,'w')
 output.write('\\begin{tabular}{c |c} \nEigenvalue & Multiplicity \\\ \n\\hline\\hline')

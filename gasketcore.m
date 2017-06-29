@@ -56,7 +56,7 @@ for i = 1:length(gasket_points)
 end
 
 %find the eigenvectors/values for the laplacian
-[V,D]=eigs(laplacian,2,'sm');
+[V,D]=eigs(laplacian,10,'sm');
 
 
 %[eigvals,indices] = sort(real(diag(D)));
@@ -67,14 +67,14 @@ end
 %    unique_eigvals(2,i) = sum(abs(eigvals-unique_eigvals(1,i))<0.01);
 %end
     
-peano_seq = peano([[2;2] [2;0] [0;1] [1;1] [1;2] [2;0] [0;0] [0;1] [1;2]],m-1);
-peano_graph = zeros(length(peano_seq),1);
-for i = 1:length(peano_seq)
-    if not(all(peano_seq(:,i)-max(peano_seq(:,i))==0))
-        peano_graph(i,1) = V(indexMap(mat2str(peano_seq(:,i))),1);
-    end
-end
-plot(peano_graph)
+%peano_seq = peano([[2;2] [2;0] [0;1] [1;1] [1;2] [2;0] [0;0] [0;1] [1;2]],m-1);
+%peano_graph = zeros(length(peano_seq),1);
+%for i = 1:length(peano_seq)
+%    if not(all(peano_seq(:,i)-max(peano_seq(:,i))==0))
+%        peano_graph(i,1) = V(indexMap(mat2str(peano_seq(:,i))),1);
+%    end
+%end
+%plot(peano_graph)
 
 
 %here we just walk through a bunch of gasket graphs looking for one that is
@@ -90,8 +90,8 @@ plot(peano_graph)
  
 
 
-%gasket_points = [gasket_points boundary; V(:,3)' 0 0 0];
-%[a,b,c]=gasketgraph(gasket_points);
-%scatter3(a,b,c,'.')
+temp = [gasket_points boundary; V(:,2)' 0 0 0];
+[a,b,c]=gasketgraph(temp);
+scatter3(a,b,c,'.')
 
 %plot(log(eigvals),zeros(length(eigvals),1),'o')

@@ -14,9 +14,9 @@ end
 while maxdex > mindex + 1
     temp = floor((maxdex+mindex)/2);
     if eigvals(temp) > x
-        maxdex = temp
+        maxdex = temp;
     else
-        mindex = temp
+        mindex = temp;
     end
 end
 
