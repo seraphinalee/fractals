@@ -71,7 +71,7 @@ peano_seq = peano([[2;2] [2;0] [0;1] [1;1] [1;2] [2;0] [0;0] [0;1] [1;2]],m-1);
 peano_graph = zeros(length(peano_seq),1);
 for i = 1:length(peano_seq)
     if not(all(peano_seq(:,i)-max(peano_seq(:,i))==0))
-        peano_graph(i,1) = V(indexMap(mat2str(peano_seq(:,i))),2);
+        peano_graph(i,1) = V(indexMap(mat2str(peano_seq(:,i))),1);
     end
 end
 plot(peano_graph)
