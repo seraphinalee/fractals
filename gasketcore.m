@@ -56,7 +56,7 @@ for i = 1:length(gasket_points)
 end
 
 %find the eigenvectors/values for the laplacian
-[V,D]=eigs(laplacian,10,'sm');
+[V,D]=eigs(laplacian,1,'sm');
 
 
 %[eigvals,indices] = sort(real(diag(D)));
@@ -90,7 +90,7 @@ end
  
 
 
-temp = [gasket_points boundary; V(:,2)' 0 0 0];
+temp = [gasket_points boundary; V(:,1)' 0 0 0];
 [a,b,c]=gasketgraph(temp);
 scatter3(a,b,c,'.')
 

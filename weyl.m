@@ -69,7 +69,7 @@ end
 
 f = @(x) countingfunction(eigvals,x);
 plotpoints = arrayfun(f,eigvals);
-alpha = polyfit(log(eigvals'),log(plotpoints'),1);
+alpha = polyfit(log(eigvals(half,end)'),log(plotpoints(half,end)'),1);
 alpha = alpha(1);
 plot(log(eigvals'),log(plotpoints'./(eigvals').^alpha))
 
