@@ -13,7 +13,8 @@ end
 
 mu0vals = linspace(0.01,0.9/3,20);  %fill in the values you want to test here, between 0 and 1/3
 %rvals = [0.1 0.5 1 2 5 10]; %fill in the values you want to test here, between 0 and infinity
-rvals = ones(1,length(mu0vals))./(6*mu0vals)-1/2;
+%rvals = ones(1,length(mu0vals))./(6*mu0vals)-1/2;
+rvals = ones(1,length(mu0vals));
 data = zeros(length(mu0vals),1092);
 
 for mu0dex = linspace(1,length(rvals),length(rvals))%r vals, a list of indices (1 to n)

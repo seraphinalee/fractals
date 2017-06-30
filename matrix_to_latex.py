@@ -10,7 +10,7 @@ outfilename = 'mylatex.tex'
 matrixname = 'unique_eigvals'
 
 output = open(outfilename,'w')
-output.write('\\begin{tabular}{c |c} \nEigenvalue & Multiplicity \\\ \n\\hline\\hline')
+output.write('\\begin{tabular}{c |c} \nEigenvalue & Multiplicity \\\ \n\\hline\\hline\n')
 matrix = sio.loadmat(myfilename)
 matrix = matrix[matrixname]
 for i in range(0,len(matrix)):

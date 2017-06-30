@@ -72,4 +72,6 @@ plotpoints = arrayfun(f,eigvals);
 alpha = polyfit(log(eigvals'),log(plotpoints'),1);
 alpha = alpha(1);
 plot(log(eigvals'),log(plotpoints'./(eigvals').^alpha))
+
+
     
