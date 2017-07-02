@@ -2,21 +2,21 @@ m=6;%this value needs to be even because we are twice iterating
 %definitely have to stop at m=8
 
 %boundary and internal points for point gen
-%boundary = [[0;0] [1;1] [2;2]];
-%gasket_points = [[0;1] [1;2] [2;0]];
+boundary = [[0;0] [1;1] [2;2]];
+gasket_points = [[0;1] [1;2] [2;0]];
 
 %iteratively generate points by folding in new boundaries and trifurcating
-%for i = 1:m-1
-%    gasket_points = repelem(gasket_points,1,3);
-%    gasket_points = [gasket_points boundary; repmat([0 1 2],1,length(gasket_points)/3) [1 2 0]];
-%    boundary = [boundary ; 0 1 2];
-%end
+for i = 1:m-1
+    gasket_points = repelem(gasket_points,1,3);
+    gasket_points = [gasket_points boundary; repmat([0 1 2],1,length(gasket_points)/3) [1 2 0]];
+    boundary = [boundary ; 0 1 2];
+end
 %a hash table for indexing the address to integers
 %the key is the string of the point address
-%indexMap = containers.Map;
-%for i=1:length(gasket_points)
-%    indexMap(mat2str(gasket_points(:,i))) = i;
-%end
+indexMap = containers.Map;
+for i=1:length(gasket_points)
+    indexMap(mat2str(gasket_points(:,i))) = i;
+end
 
 %define the laplacian, first with zeros..
 laplacian = zeros(1/2*(3^(m+1)-3));
@@ -47,6 +47,7 @@ for i = 1:length(gasket_points)
         if not(all(neighbors(:,j)-max(neighbors(:,j))==0))
             %compute the interedge resistance
             resistance = edgeresistance(gasket_points(:,i),neighbors(:,j),r0,r1);
+            disp(resistance)
             %assign value for the laplacian, +/- based on direction
             %the daig eventually collects all 4 by addition
             laplacian(i,indexMap(mat2str(neighbors(:,j)))) = - pointmass / resistance;
@@ -65,45 +66,45 @@ end
 [V,D]=eig(laplacian);
 
 
-[eigvals,indices] = sort(real(diag(D)));
-eigvals = eigvals';
-unique_eigvals = uniquetol(eigvals,0.01/max(eigvals));
-unique_eigvals = [unique_eigvals ;zeros(1,length(unique_eigvals))];
-for i =1:length(unique_eigvals)
-    unique_eigvals(2,i) = sum(abs(eigvals-unique_eigvals(1,i))<0.01);
-end
+%[eigvals,indices] = sort(real(diag(D)));
+%eigvals = eigvals';
+%unique_eigvals = uniquetol(eigvals,0.01/max(eigvals));
+%unique_eigvals = [unique_eigvals ;zeros(1,length(unique_eigvals))];
+%for i =1:length(unique_eigvals)
+%    unique_eigvals(2,i) = sum(abs(eigvals-unique_eigvals(1,i))<0.01);
+%end
     
 %peano_seq = peano([[2;2] [2;0] [0;1] [1;1] [1;2] [2;0] [0;0] [0;1] [1;2]],m-1);
-peano_graph = zeros(length(peano_seq),4);
-for j = 1:4
-    for i = 1:length(peano_seq)
-        if not(all(peano_seq(:,i)-max(peano_seq(:,i))==0))
-            peano_graph(i,j) = V(indexMap(mat2str(peano_seq(:,i))),indices(j));
-        end
-    end
-end
+%peano_graph = zeros(length(peano_seq),4);
+%for j = 1:4
+%    for i = 1:length(peano_seq)
+%        if not(all(peano_seq(:,i)-max(peano_seq(:,i))==0))
+%            peano_graph(i,j) = V(indexMap(mat2str(peano_seq(:,i))),indices(j));
+%        end
+%    end
+%end
 
 f = @(x) countingfunction(eigvals,x);
 
 
-subplot(3,2,1);
-plot(peano_graph(:,1))
-xlabel('eigfunc 1');
-subplot(3,2,2);
-plot(peano_graph(:,2))
-xlabel('eigfunc 2');
-subplot(3,2,3);
-plot(peano_graph(:,3))
-xlabel('eigfunc 3');
-subplot(3,2,4);
-plot(peano_graph(:,4))
-xlabel('eigfunc 4');
-subplot(3,2,[5,6]);
-plot(eigvals',plotpoints')
-xlabel(str);
+%subplot(3,2,1);
+%plot(peano_graph(:,1))
+%xlabel('eigfunc 1');
+%subplot(3,2,2);
+%plot(peano_graph(:,2))
+%xlabel('eigfunc 2');
+%subplot(3,2,3);
+%plot(peano_graph(:,3))
+%xlabel('eigfunc 3');
+%subplot(3,2,4);
+%plot(peano_graph(:,4))
+%xlabel('eigfunc 4');
+%subplot(3,2,[5,6]);
+%plot(eigvals',plotpoints')
+%xlabel(str);
 
-print(strcat('./data/',filename),'-dpng');
-dlmwrite(strcat('./data/',filename),unique_eigvals);
+%print(strcat('./data/',filename),'-dpng');
+%dlmwrite(strcat('./data/',filename),unique_eigvals);
 
 
 %here we just walk through a bunch of gasket graphs looking for one that is
