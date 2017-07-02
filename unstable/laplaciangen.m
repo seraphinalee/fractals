@@ -1,9 +1,7 @@
-m=3;
-r0 = (3/5)^2;
-r1 = (3/5)^2;
-mu0 = 1/20;
+function [ laplacian,plotting_points,points ] = laplaciangen(m,mu0,r0,r1,cutoff)
+%UNTITLED3 Summary of this function goes here
+%   Detailed explanation goes here
 mu1 = 1/6-mu0/2;
-cutoff = 0.5/3;
 
 reduce = @(x) sum((3*ones(length(x),1)).^(linspace(length(x)-1,0,length(x))').*x,1);
 
@@ -13,7 +11,7 @@ for i =2:m
     newcells = {};
     for j =1:length(cells)
         splitcell = cells{j};
-        if not(isempty(splitcell)) && splitcell.measure>cutoff^i;
+        if not(isempty(splitcell)) && splitcell.measure>=cutoff^i;
             meas = splitcell.measure;
             res = splitcell.resistance;
             tail = splitcell.address;
@@ -55,7 +53,7 @@ end
 
 
 %define the laplacian, first with zeros..
-laplacian = zeros(1/2*(3^(2*m+1)-3));
+laplacian = sparse((3*(length(cells)-deletions)-3)/2,(3*(length(cells)-deletions)-3)/2);
 
 
 for i = 1:length(cells)
@@ -83,31 +81,5 @@ for i = 1:length(cells)
     end
 end
 
-
-
-
-
-%find the eigenvectors/values for the laplacian
-[V,D]=eig(laplacian);
-
-
-temp = [plotting_points 0*ones(1+2*m,1) 1*ones(1+2*m,1) 2*ones(1+2*m,1); V(:,1)' 0 0 0];
-[a,b,c]=gasketgraph(temp);
-scatter3(a,b,c,'.')
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-    
+end
 
