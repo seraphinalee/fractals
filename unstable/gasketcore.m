@@ -1,8 +1,9 @@
 m=3;
 r0 = (3/5)^2;
 r1 = (3/5)^2;
-mu0 = 1/9;
-mu1 = 1/9;
+mu0 = 1/100;
+mu1 = 1/6-mu0/2;
+cutoff = 0.5/3;
 
 reduce = @(x) sum((3*ones(length(x),1)).^(linspace(length(x)-1,0,length(x))').*x,1);
 
@@ -12,7 +13,7 @@ for i =2:m
     newcells = {};
     for j =1:length(cells)
         splitcell = cells{j};
-        if not(isempty(splitcell))
+        if not(isempty(splitcell)) && splitcell.measure>cutoff^i;
             meas = splitcell.measure;
             res = splitcell.resistance;
             tail = splitcell.address;
@@ -32,15 +33,16 @@ for i =1:length(cells)
     cell = cells{i};
     if not(isempty(cell))
         address = cell.address;
+        buffer = 2*m+1-length(address);
         for q =0:2
             if not(all([q;address]-max([q;address])==0))
                 try
-                    reduced_address = reduce(primary([q;address]));
+                    reduced_address = reduce(primary([q*ones(buffer,1);address]));
                     current = points(reduced_address);
                     points(reduced_address) = current + [cell.measure 0];
                 catch ME
-                    points(reduce(primary([q;address]))) = [cell.measure index];
-                    plotting_points(:,index) = primary([q;address]);
+                    points(reduce(primary([q*ones(buffer,1);address]))) = [cell.measure index];
+                    plotting_points(:,index) = primary([q*ones(buffer,1);address]);
                     index = index+1;
                 end
             end
@@ -53,24 +55,25 @@ end
 
 
 %define the laplacian, first with zeros..
-laplacian = zeros(1/2*(3^(2*m+1)-3));
+laplacian = zeros((3*(length(cells)-deletions)-3)/2);
 
 
 for i = 1:length(cells)
     cell = cells{i};
     if not(isempty(cell))
         address = cell.address;
+        buffer = 2*m+1-length(address);
         resistance = cell.resistance;
         for q =0:2
             if not(all([q;address]-max([q;address])==0))
-                reduced_address = reduce(primary([q;address]));
+                reduced_address = reduce(primary([q*ones(buffer,1);address]));
                 pointdata = points(reduced_address);
                 pointmass = 3/pointdata(1);
                 injective_address = pointdata(2);
                 for offset =1:2
                     laplacian(injective_address,injective_address) = laplacian(injective_address,injective_address) + pointmass/resistance;
                     try
-                        neighbordata = points(reduce(primary([mod(q+offset,3);address])));
+                        neighbordata = points(reduce(primary([mod(q+offset,3)*ones(buffer,1);address])));
                         laplacian(injective_address,neighbordata(2)) = - pointmass/resistance;
                     
                     end
