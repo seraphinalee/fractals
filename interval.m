@@ -1,7 +1,7 @@
 
 m=5; %level
-p=0.7; %measure parameter
-q=0.5; %resistance parameter
+p=0.9; %measure parameter
+q=0.1; %resistance parameter
 measure = [p/2 (1-p)/2 (1-p)/2 p/2]; %base measure split
 resistance = [q/2 (1-q)/2 (1-q)/2 q/2]; %base resistance split
 %split iteratively...
@@ -32,13 +32,15 @@ for i = 2:4^m-1
 end
 %compute eigenfunction/values
 [V,D] = eig(laplacian);
-%rescale and plot
-V = V*(1/(max(max(V))));
-plot(linspace(0,1,4^m-1)',[V(:,end-1:end) (measure(2:end).*(1/max(measure)))'])
+
+%eigenvalue counting fnc
+[eigvals,indices] = sort(real(diag(D)));
+counting_graph(eigvals);
 
 
-    
-    
 
 
+%rescale and plot eigenfnc
+%V = V*(1/(max(max(V))));
+%plot(linspace(0,1,4^m-1)',[V(:,10) (measure(2:end).*(1/max(measure)))'])
 
