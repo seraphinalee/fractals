@@ -16,11 +16,17 @@ mu1 = 1/6- mu0/2;
 %r0 = 0.5;
 %r1 = 1/4;
 
+
+
+
 %then for each gasket point...
 [ V,D ] = laplacian_gen(m, mu0, mu1, r0, r1);
 
 
-%[eigvals,indices] = sort(real(diag(D)));
+[eigvals,indices] = sort(real(diag(D)));
+
+counting_graph(eigvals);
+
 %eigvals = eigvals';
 %unique_eigvals = uniquetol(eigvals,0.01/max(eigvals));
 %unique_eigvals = [unique_eigvals ;zeros(1,length(unique_eigvals))];
@@ -37,9 +43,6 @@ mu1 = 1/6- mu0/2;
 %        end
 %    end
 %end
-
-f = @(x) countingfunction(eigvals,x);
-
 
 %subplot(3,2,1);
 %plot(peano_graph(:,1))
