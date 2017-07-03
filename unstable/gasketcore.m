@@ -1,21 +1,23 @@
-[smalllaplacian,smallplotting_points,smallpoints] = laplaciangen(1,1/9,9/25,9/25,0);
-[laplacian,plotting_points,points] = laplaciangen(2,1/9,9/25,9/25,0);
+[smalllaplacian,smallplotting_points,smallpoints] = laplaciangen(2,1/9,9/25,9/25,0);
+[laplacian,plotting_points,points] = laplaciangen(3,1/9,9/25,9/25,0);
 [unique_eigvals,eigvals,V,indices] = fullspectra(laplacian);
 [smallunique_eigvals,smalleigvals,smallV,smallindices] = fullspectra(smalllaplacian);
 
 
-[hits diffs] = eigenhunt(smallV(:,smallindices(3)),V,5,points,smallplotting_points);
+%[hits diffs] = eigenhunt(smallV(:,smallindices(2)),V,20,points,smallplotting_points);
 
+subplot(1,2,1)
+gasketgraph(smallplotting_points,smallV(:,2));
+subplot(1,2,2)
+gasketgraph(plotting_points,V(:,3));
 
-
-gasketgraph(smallplotting_points,smallV(:,smallindices(2)))
-
-for i =1:5
-    gasketgraph(plotting_points,hits(:,i));
-    pause()
-end
-
-
+%for i =1:20
+%    subplot(1,2,1)
+%    gasketgraph(smallplotting_points,smallV(:,2))
+%    subplot(1,2,2)
+%    gasketgraph(plotting_points,hits(:,i));
+%    pause()
+%end
 
 %x = linspace(0.001,0.60,10)
 %for i = 1:10
