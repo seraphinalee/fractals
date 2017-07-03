@@ -1,9 +1,15 @@
-[laplacian,plotting_points,points] = laplaciangen(3,1/9,9/25,9/25,0);
-[unique_eigvals,eigvals,V,indices] = fullspectra(laplacian);
+%[laplacian,plotting_points,points] = laplaciangen(3,1/9,9/25,9/25,0);
+%[unique_eigvals,eigvals,V,indices] = fullspectra(laplacian);
 
 
 %gasketgraph(plotting_points,V(:,1));
-
+x = linspace(0.001,0.60,10)
+for i = 1:10
+   printout3(x(i),num2str(i));
+   printout3(twin(x(i)),strcat(num2str(i),'twin'));
+end
+printout3(0.641677,'max');
+printout3(1,'standard');
 
 
 

@@ -15,9 +15,9 @@ f = @(x) countingfunction(eigvals,x);
 plotpoints = arrayfun(f,eigvals);
 %dlm = fitlm(log(eigvals(round(length(eigvals)/2):end)'),log(plotpoints(round(length(eigvals)/2):end)'),'Intercept',false);
 %alpha = table2array(dlm.Coefficients(1,'Estimate'));
-p = polyfit(log(eigvals)',log(plotpoints)',1);
-plot(log(eigvals),[log(plotpoints);log(eigvals)*p(1)+p(2)]);
-plot(log(eigvals'),log(plotpoints'./((eigvals').^p(1))));
+r=1;
+alpha = 2*log(3)/log((2*r+1)*(9*r^2+26*r+15)/(2*r*(r+2)));
+plot(log(eigvals'),log(plotpoints'./((eigvals').^alpha)));
 
 
     
