@@ -4,11 +4,11 @@
 [smallunique_eigvals,smalleigvals,smallV,smallindices] = fullspectra(smalllaplacian);
 
 
-[hits diffs] = eigenhunt(smallV(:,smallindices(3)),V,5,points,smallplotting_points);
+hits = eigenhunt(smallV(:,smallindices(1)),V,5,points,smallplotting_points);
 
 
 
-gasketgraph(smallplotting_points,smallV(:,smallindices(2)))
+
 
 for i =1:5
     gasketgraph(plotting_points,hits(:,i));
