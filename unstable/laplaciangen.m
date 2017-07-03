@@ -73,7 +73,6 @@ for i = 1:length(cells)
                     try
                         neighbordata = points(reduce(primary([mod(q+offset,3)*ones(buffer,1);address])));
                         laplacian(injective_address,neighbordata(2)) = - pointmass/resistance;
-                    
                     end
                 end
             end
