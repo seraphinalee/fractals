@@ -53,7 +53,7 @@ end
 
 
 %define the laplacian, first with zeros..
-laplacian = sparse((3*(length(cells)-deletions)-3)/2,(3*(length(cells)-deletions)-3)/2);
+laplacian = zeros((3*(length(cells)-deletions)-3)/2,(3*(length(cells)-deletions)-3)/2);
 
 
 for i = 1:length(cells)
