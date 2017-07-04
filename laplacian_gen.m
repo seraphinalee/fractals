@@ -55,11 +55,5 @@ end
 %find the eigenvectors/values for the laplacian
 [V,D]=eig(laplacian);
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 2ec766293c76731e93737800a9e6f11fe3387bd8
 end
 
