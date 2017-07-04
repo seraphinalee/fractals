@@ -39,6 +39,7 @@ for i = 1:length(gasketdata)
     X(i,1) = cartesian(1);
     Y(i,1) = cartesian(2);
     Z(i,1) = gasketdata(end,i);
+    plot3(X,Y,Z,'.')
 end
 end
 
