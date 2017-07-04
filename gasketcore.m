@@ -7,7 +7,7 @@ m=6;%this value needs to be even because we are twice iterating
 filename = 'myfilename';
 
 
-
+%test values, standard and meaningless ones
 mu0 = 1/9;
 r0 = (3/5)^2;
 r1 = (3/5)^2;
@@ -20,29 +20,21 @@ mu1 = 1/6- mu0/2;
 
 
 %then for each gasket point...
-[ V,D ] = laplacian_gen(m, mu0, mu1, r0, r1);
+%V = columns are eigenfunction values at the vertices
+%D = diagonal matrix with the corresponding eigenvalues
+%indexMap for hashing purposes in peanographer
+[ V,D,indexMap ] = laplacian_gen(m, mu0, r0, r1);
 
-
+%sort according to eigvals (low to high), keeping track of indices
 [eigvals,indices] = sort(real(diag(D)));
 
-counting_graph(eigvals);
+%below graphs the counting function
+%counting_graph(eigvals);
 
-%eigvals = eigvals';
-%unique_eigvals = uniquetol(eigvals,0.01/max(eigvals));
-%unique_eigvals = [unique_eigvals ;zeros(1,length(unique_eigvals))];
-%for i =1:length(unique_eigvals)
-%    unique_eigvals(2,i) = sum(abs(eigvals-unique_eigvals(1,i))<0.01);
-%end
-    
-%peano_seq = peano([[2;2] [2;0] [0;1] [1;1] [1;2] [2;0] [0;0] [0;1] [1;2]],m-1);
-%peano_graph = zeros(length(peano_seq),4);
-%for j = 1:4
-%    for i = 1:length(peano_seq)
-%        if not(all(peano_seq(:,i)-max(peano_seq(:,i))==0))
-%            peano_graph(i,j) = V(indexMap(mat2str(peano_seq(:,i))),indices(j));
-%        end
-%    end
-%end
+unique_eigvals = eigval_mult(D);
+
+peano_graph = peanographer(V, m, indexMap, indices(2));
+plot(peano_graph);
 
 %subplot(3,2,1);
 %plot(peano_graph(:,1))
@@ -63,17 +55,19 @@ counting_graph(eigvals);
 %print(strcat('./data/',filename),'-dpng');
 %dlmwrite(strcat('./data/',filename),unique_eigvals);
 
-
-%here we just walk through a bunch of gasket graphs looking for one that is
-%interesting
-%for i=1:100
+% [eigvals,indices] = sort(real(diag(D)));
+% %here we just walk through a bunch of gasket graphs looking for one that is
+% %interesting
+% for i=1:100
 %    %temp = [gasket_points boundary; V(:,randi(length(V)))' 0 0 0];
 %    temp = [gasket_points boundary; V(:,indices(i))' 0 0 0];
 %    [a,b,c]=gasketgraph(temp);
 %    scatter3(a,b,c,'.')
 %    pause()
 %    clf
-%end
+% end
+
+
  
 
 

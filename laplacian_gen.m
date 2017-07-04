@@ -1,6 +1,9 @@
-function [ V,D ] = laplacian_gen( m, mu0, mu1, r0, r1 )
+function [ V,D,indexMap ] = laplacian_gen( m, mu0, r0, r1 )
 %laplacian and eigenvalue/function generation that we seem to keep copying
 %and pasting
+%V = columns are eigenfunctions at the vertices at level m
+%D = diagonal has all the corresponding eigenvalues
+%indexMap = hashing thing, usually doesn't need to be used probs
 
 %boundary and internal points for point gen
 boundary = [[0;0] [1;1] [2;2]];
@@ -34,7 +37,7 @@ for i = 1:length(gasket_points)
         if not(all(neighbors(:,j)-max(neighbors(:,j))==0))
             %compute the interedge resistance
             resistance = edgeresistance(gasket_points(:,i),neighbors(:,j),r0,r1);
-            disp(resistance)
+            
             %assign value for the laplacian, +/- based on direction
             %the daig eventually collects all 4 by addition
             laplacian(i,indexMap(mat2str(neighbors(:,j)))) = - pointmass / resistance;
@@ -51,7 +54,6 @@ end
 
 %find the eigenvectors/values for the laplacian
 [V,D]=eig(laplacian);
-
 
 end
 

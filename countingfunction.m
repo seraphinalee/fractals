@@ -1,6 +1,8 @@
 function [ mindex ] = countingfunction( eigvals,x )
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+%returns how many eigenvalues are less than or equal to x
+%eigvals = result from "[eigvals,indices] = sort(real(diag(D)))"
+%x must be an eigenvalue
+%should probably only be used in counting_graph
 mindex = 1;
 maxdex = length(eigvals);
 if x > eigvals(end)

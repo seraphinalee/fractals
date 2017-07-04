@@ -10,7 +10,7 @@ r1 = (3/5)^2;
 %r0 = 0.5;
 %r1 = 1/4;
     
-[ V,D ] = laplacian_gen(m, mu0, (1-3*mu0)/6, r0, r1);
+[ V,D ] = laplacian_gen(m, mu0, r0, r1);
 
 eigvals = sort(real(diag(D)));
 eigvals = eigvals';
