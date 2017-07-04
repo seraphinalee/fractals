@@ -19,7 +19,7 @@ for j =0:2
         point = hashMap(reduce(rotatepoints(:,i)));
         selected_points(i,:) = V(point(2),:);
     end
-    selected_points = selected_points./max(selected_points);
+    selected_points = selected_points./(repmat(max(selected_points),num_points,1));
     for i=1:num_to_test
        %diffs(j+1,i) =  min(sum(abs(selected_points(:,i)-eigenfunc)),sum(abs(selected_points(:,i)+eigenfunc)));
        diffs(j+1,i) =  abs(1/(dot(selected_points(:,i)/norm(selected_points(:,i)),eigenfunc/norm(eigenfunc))));
