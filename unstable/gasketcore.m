@@ -4,7 +4,7 @@ search = 4;
 [smalllaplacian,smallplotting_points,smallpoints] = laplaciangen(1,mu0, r0, r1,0);
 [laplacian,plotting_points,points] = laplaciangen(2,mu0, r0, r1,0);
 %[V,D] = partialspectra(laplacian,20);
-[unique_eigvals, eigvals, V, indices] = fullspectra(laplacian);
+[unique_eigvals, eigvals, V] = fullspectra(laplacian);
 [smallunique_eigvals,smalleigvals,smallV,smallindices] = fullspectra(smalllaplacian);
 
 
