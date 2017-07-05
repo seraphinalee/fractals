@@ -36,9 +36,5 @@ for i =1:n
     hit_indices(i) = ceil(hit_indices(i)/3);
     eigfuncs(:,i) = V(:,hit_indices(i));
 end
-disp(eigenfunc/norm(eigenfunc));
-for i = 1:7
-    disp(selected_points(:,hit_indices(i))/norm(selected_points(:,hit_indices(i))));
-end
 hit_indices = hit_indices(1:n);
         
