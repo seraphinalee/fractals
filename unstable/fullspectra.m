@@ -14,8 +14,9 @@ for i =1:length(unique_eigvals)
 end
 
 V_out = zeros(length(V));
+disp(indices);
 for j = 1:length(indices)
-    V_out(:, i) = V(:, indices(i));
+    V_out(:, j) = V(:, indices(j));
 end
 
 end
