@@ -1,4 +1,4 @@
-r=4;
+r=1;
 [mu0, mu1, r0, r1] = params(r);
 
 
@@ -8,7 +8,7 @@ num_vals = length(smallunique_eigvals);
 %disp(smallV);
 eigvals_plot = zeros(num_vals, 4);
 eigvals_small = zeros(num_vals, 1);
-disp(size(eigvals_small));
+%disp(size(eigvals_small));
 hitdex = zeros(num_vals, 4);
 
 
@@ -34,6 +34,29 @@ for search=1:num_vals
     %disp(hit_indices);
 end
 
-plot(repmat(eigvals_small,1, 4), eigvals_plot);
+%plot(repmat(eigvals_small,1, 4), eigvals_plot, 'o');
+plot_v = [eigvals_plot(:, 1); eigvals_plot(:, 2); eigvals_plot(:, 3); eigvals_plot(:, 4)];
+
+eq_fst = zeros(length(eigvals_small)*2, 1);
+
+eigvals_small = (eigvals_small./max(plot_v))*6;
+plot_v = (plot_v./max(plot_v))*4.9990;
+
+
+for i=1:length(eigvals_small)
+    eq_fst(2*i-1) = (5+(25-4*eigvals_small(i))^(1/2))/2;
+    eq_fst(2*i) = (5-(25-4*eigvals_small(i))^(1/2))/2;
+end
+
+eq_snd = zeros(2*length(eq_fst), 1);
+for j=1:length(eq_fst)
+    eq_snd(2*j-1) = (5+(25-4*eq_fst(j))^(1/2))/2;
+    eq_snd(2*j) = (5-(25-4*eq_fst(j))^(1/2))/2;
+end
+
+disp(sort(eq_snd));
+disp(sort(plot_v));
+
+plot(ones(length(plot_v), length(plot_v)), plot_v, 'o', zeros(length(eq_snd), length(eq_snd)), eq_snd, 'o');
 
 
