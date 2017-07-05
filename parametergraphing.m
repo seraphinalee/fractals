@@ -63,8 +63,8 @@ for mu0dex = linspace(1,length(rvals),length(rvals))%r vals, a list of indices (
     %    unique_eigvals(2,i) = sum(abs(eigvals-unique_eigvals(1,i))<0.01);
     %end
     %unique_eigvals = unique_eigvals';
-    data(mu0dex,:) = log(eigvals);
+    %data(mu0dex,:) = log(eigvals);
 
 end
-plot(mu0vals,data)
+%plot(mu0vals,data)
 
