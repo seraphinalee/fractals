@@ -4,7 +4,7 @@ r=1;
 
 [smalllaplacian,smallplotting_points,smallpoints] = laplaciangen(1,mu0, r0, r1,0);
 [smallunique_eigvals,smalleigvals,smallV] = fullspectra(smalllaplacian);
-num_vals = length(smallunique_eigvals);
+num_vals = length(smalleigvals);
 %disp(smallV);
 eigvals_plot = zeros(num_vals, 4);
 eigvals_small = zeros(num_vals, 1);
@@ -29,7 +29,7 @@ for search=1:num_vals
     eigvals_plot(search, 2) = eigvals(hit_indices(2));
     eigvals_plot(search, 3) = eigvals(hit_indices(3));
     eigvals_plot(search, 4) = eigvals(hit_indices(4));
-    eigvals_small(search) = smallunique_eigvals(1, search);
+    eigvals_small(search) = smalleigvals(1, search);
     
     %disp(hit_indices);
 end
