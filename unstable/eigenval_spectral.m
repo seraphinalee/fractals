@@ -1,7 +1,6 @@
 r=1;
 [mu0, mu1, r0, r1] = params(r);
 
-
 [smalllaplacian,smallplotting_points,smallpoints] = laplaciangen(1,mu0, r0, r1,0);
 [smallunique_eigvals,smalleigvals,smallV] = fullspectra(smalllaplacian);
 num_vals = length(smalleigvals);
