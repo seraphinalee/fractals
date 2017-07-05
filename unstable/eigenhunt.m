@@ -1,4 +1,4 @@
-function [eigfuncs output_diffs] = eigenhunt(eigenfunc,V,n,hashMap,smallplotting_points)
+function [eigfuncs output_diffs hit_indices] = eigenhunt(eigenfunc,V,n,hashMap,smallplotting_points)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -22,13 +22,15 @@ for j =0:2
     selected_points = selected_points./(repmat(max(selected_points),num_points,1));
     for i=1:num_to_test
        %diffs(j+1,i) =  min(sum(abs(selected_points(:,i)-eigenfunc)),sum(abs(selected_points(:,i)+eigenfunc)));
-       diffs(j+1,i) =  abs(1/(dot(selected_points(:,i)/norm(selected_points(:,i)),eigenfunc/norm(eigenfunc))));
+       diffs(j+1,i) =  1-abs((dot(selected_points(:,i)/norm(selected_points(:,i)),eigenfunc/norm(eigenfunc))));
     end
 end
 diffs = reshape(diffs,1,[]);
-[output_diffs,indices] = sort(diffs);
+[output_diffs,hit_indices] = sort(diffs);
 output_diffs = output_diffs(1:n);
 for i =1:n
-     eigfuncs(:,i) = V(:,ceil(indices(i)/3));
+    hit_indices(i) = ceil(hit_indices(i)/3);
+     eigfuncs(:,i) = V(:,hit_indices(i));
 end
+hit_indices = hit_indices(1:n);
         

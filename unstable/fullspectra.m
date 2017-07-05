@@ -1,7 +1,7 @@
 function [unique_eigvals,eigvals,V,indices] = fullspectra( laplacian )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
-
+laplacian = full(laplacian);
 [V,D]=eig(laplacian);
 
 
