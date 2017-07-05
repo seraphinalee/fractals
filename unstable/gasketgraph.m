@@ -9,14 +9,14 @@ X = zeros(length(gasketdata),1);
 Y = zeros(length(gasketdata),1);
 Z = zeros(length(gasketdata),1);
 %defining IFS
-f0 = @(x) 1/2*(x-[0.5,tan(60)*0.5]) + [0.5,tan(60)*0.5];
+f0 = @(x) 1/2*(x-[0.5,tan(60)*2]) + [0.5,tan(60)*2];
 f1 = @(x) 1/2*(x-[1,0]) + [1,0];
 f2 = @(x) 1/2*(x-[0,0]) ;
 %for each point...
 for i = 1:length(gasketdata)
     %find the proper qi...
     if gasketdata(1,i) == 0
-        cartesian = [0.5,tan(60)*0.5];
+        cartesian = [0.5,tan(60)*2];
     end
     if gasketdata(1,i) == 1
         cartesian = [1,0];

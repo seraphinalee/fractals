@@ -13,7 +13,7 @@ search = 4;
 %subplot(1,2,1)
 %gasketgraph(smallplotting_points,smallV(:,2));
 %subplot(1,2,2)
-%gasketgraph(plotting_points,V(:,2));
+gasketgraph(plotting_points,V(:,2));
 
 % for i =1:20
 %     subplot(1,2,1)
