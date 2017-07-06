@@ -3,7 +3,7 @@ function [] = gasketgraph( plotting_points,z_vals )
 %each column vector is a standard address with a z-value appended on the
 %end
 dims = size(plotting_points);
-gasketdata = [plotting_points 0*ones(dims(1),1) 1*ones(dims(1),1) 2*ones(dims(1),1); z_vals' 0 0 0];
+gasketdata = [plotting_points; z_vals'];
 %declaring empty output
 X = zeros(length(gasketdata),1);
 Y = zeros(length(gasketdata),1);
