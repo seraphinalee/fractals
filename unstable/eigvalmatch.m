@@ -8,12 +8,19 @@ for i = 1: m
     for j = 1:4
         diff = 10000;
         curr_match = 0;
+        disp(size(prev_eig_high))
+        disp(prev_mapping(i,j))
+        if (prev_mapping(i,j) ~= 0)
+        if prev_eig_high(prev_mapping(i,j)) ~= 0
         for k = 1:length(eig_high)
             if (abs(eig_high(k) - prev_eig_high(prev_mapping(i,j))) < diff)
+                diff = abs(eig_high(k) - prev_eig_high(prev_mapping(i,j)));
                 curr_match = k;
             end
-        mapping(i,j) = curr_match;
         end
+        end
+        end
+        mapping(i,j) = curr_match;
     end
 end
 
