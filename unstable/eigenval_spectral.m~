@@ -16,6 +16,7 @@ eigvals_plot = zeros(num_vals, 4);
 eigvals_small = zeros(num_vals, 1);
 
 
+
 for search=1:num_vals
     [hits, diffs, hit_indices] = eigenhunt(smallV(:,search),V,20,points,smallplotting_points);
     
@@ -35,27 +36,45 @@ end
 eig_lev2 = [(5-sqrt(17))/2, (5-sqrt(5))/2, (5-sqrt(5))/2, (5+sqrt(5))/2, (5+sqrt(5))/2, (5+sqrt(17))/2, 5, 5, 5, 6, 6, 6];
 
 %checking calculations
-plot_v = [eigvals_plot(:, 1); eigvals_plot(:, 2); eigvals_plot(:, 3); eigvals_plot(:, 4)];
+%plot_v = [eigvals_plot(:, 1); eigvals_plot(:, 2); eigvals_plot(:, 3); eigvals_plot(:, 4)];
 
-eq_fst = zeros(length(eigvals_small)*2, 1);
+eig_lev3 = zeros(length(eig_lev2), 2);
 
-plot_v = (plot_v./max(plot_v))*4.9990;
+val_to_sort = zeros(length(eig_lev2)*4);
 
 
 for i=1:length(eig_lev2)
-    eq_fst(2*i-1) = (5+(25-4*eig_level(i))^(1/2))/2;
-    eq_fst(2*i) = (5-(25-4*eig_level(i))^(1/2))/2;
+    eig_lev3(i, 1) = (5+(25-4*eig_lev2(i))^(1/2))/2;
+    eig_lev3(i, 2) = (5-(25-4*eig_lev2(i))^(1/2))/2;
 end
 
-eq_snd = zeros(2*length(eq_fst), 1);
-for j=1:length(eq_fst)
-    eq_snd(2*j-1) = (5+(25-4*eq_fst(j))^(1/2))/2;
-    eq_snd(2*j) = (5-(25-4*eq_fst(j))^(1/2))/2;
+eig_lev4 = zeros(length(eig_lev2), 4);
+for j=1:length(eig_lev2)
+    eig_lev4(j, 1) = (5+(25-4*eig_lev3(j, 1))^(1/2))/2;
+    eig_lev4(j, 2) = (5+(25-4*eig_lev3(j, 2))^(1/2))/2;
+    eig_lev4(j, 3) = (5-(25-4*eig_lev3(j, 1))^(1/2))/2;
+    eig_lev4(j, 4) = (5-(25-4*eig_lev3(j, 2))^(1/2))/2;
 end
 
-disp(sort(eq_snd));
-disp(sort(plot_v));
+for k = 1: length(eig_lev2)
+    for l = 1:4
+        val_to_sort(4*(k-1)+l) = eig_lev4(k, l);
+    end
+end
+[sorted, I] = sort(val_to_sort);
+for m = 1:length(sorted)
+    col =
+end
 
-plot(ones(length(plot_v), length(plot_v)), plot_v, 'o', zeros(length(eq_snd), length(eq_snd)), eq_snd, 'o');
+
+eig_lev4 = eig_lev4./(min(min(eig_lev4)));
+eigvals_plot = eigvals_plot./min(eigvals_plot);
+
+%disp(smallV(:, 1));
+%disp(V(:, 21));
+
+eigvalmatch(eig_lev4, )
+
+plot(ones(length(exp_eig), length(exp_eig)), exp_eig, 'o', zeros(length(eig4), length(eig4)), eig4, 'o');
 
 
