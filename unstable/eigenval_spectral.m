@@ -88,8 +88,9 @@ for j=1:length(eig_lev2)
     end
 
 end
-eig_lev4 = eig_lev4 ./ min(eig_lev4(eig_lev4 > 0));
 eigtest = eig_lev4;
+eigtest1 = eigtest ./ min(eig_lev4(eig_lev4 > 0));
+eig_lev4 = eig_lev4 ./ min(eig_lev4(eig_lev4 > 0));
 
 for k = 1: length(eig_lev2)
     for l = 1:4
@@ -99,13 +100,24 @@ end
 
 [sorted, I] = sort(val_to_sort);
 %disp(I);
-for m = 1:length(sorted)
-    col = mod(m-1, 4)+1;
-    row = (m-col)/4+1;
-    eig_lev4(row, col) = I(m);
+% for m = 1:length(sorted)
+%     col = mod(m-1, 4)+1;
+%     row = (m-col)/4+1;
+%     eig_lev4(row, col) = I(m);
+% end
+
+for i = 1:length(eig_lev2)
+    for j=1:4
+        value = eig_lev4(i,j);
+        for k = 1:length(sorted)
+            if value == sorted(k)
+                eig_lev4(i,j) = k;
+            end
+        end
+    end
 end
 
-[mu0, mu1, r0, r1] = params(1);
+[mu0, mu1, r0, r1] = params(1.01);
 [laplacian,plotting_points,points] = laplaciangen(2,mu0, r0, r1,0);
 [laplacian1,plotting_points1,points1] = laplaciangen(1,mu0, r0, r1,0);
 [unique_eigvals, eigvals, V] = fullspectra(laplacian);
@@ -140,7 +152,7 @@ for i=1:length(eig_lev4)
     end           
 end
 
-plot(eigvals1, mapped(:,1), 'o')%, eigvals1, mapping(:,2), eigvals1, mapping(:, 3), eigvals1, mapping(:,4));
+plot(eigvals1, mapped(:,1), 'o', eigvals1, mapping(:,2), 'o',eigvals1, mapping(:, 3), 'o', eigvals1, mapping(:,4), 'o');
 
 born = [];
 for i=1:length(eigvals)
