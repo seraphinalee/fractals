@@ -5,8 +5,8 @@ import scipy.io as sio
 
 #swap these three out with the necessary adjustments
 #ideally all running in the same folder but you can adjust if needed
-myfilename = 'm2irr.mat'
-outfilename = 'm2irr.tex'
+myfilename = 'm1irr.mat'
+outfilename = 'm1irr.tex'
 matrixname = 'c'
 
 output = open(outfilename,'w')
