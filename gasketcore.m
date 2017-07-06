@@ -1,4 +1,4 @@
-m=6;%this value needs to be even because we are twice iterating
+m=2;%this value needs to be even because we are twice iterating
 %definitely have to stop at m=8
 
 
@@ -26,7 +26,7 @@ mu1 = 1/6- mu0/2;
 [ V,D,indexMap ] = laplacian_gen(m, mu0, r0, r1);
 
 %sort according to eigvals (low to high), keeping track of indices
-[eigvals,indices] = sort(real(diag(D)));
+[eigvals123,indices] = sort(real(diag(D)));
 
 %below graphs the counting function
 %counting_graph(eigvals);
