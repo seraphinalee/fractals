@@ -16,7 +16,7 @@ for i = 2:m
     resistance = repelem(resistance,4);
     resistance = resistance.*repmat([q/2 (1-q)/2 (1-q)/2 q/2],1,length(resistance)/4);
 end
-
+laplacian = zeros(4^m-1);
 for i = 1:4^m-1
     avgmeasure = (measure(i)+measure(i+1))/2;
     laplacian(i,i) = (1/avgmeasure)*(1/resistance(i)+1/resistance(i+1));
