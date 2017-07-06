@@ -1,5 +1,5 @@
 
-m=2; %level
+m=5; %level
 
 
 p=0.5; %measure parameter
@@ -37,10 +37,10 @@ end
 
 %rescale and plot eigenfnc
 
+disp(eigvals(1:2))
 
-
-V = V*(1/(max(max(V))));
-plot(linspace(0,1,4^m-1)',[V(:,10) (measure(2:end).*(1/max(measure)))'])
+%V = V*(1/(max(max(V))));
+%plot(linspace(0,1,4^m-1)',[V(:,10) (measure(2:end).*(1/max(measure)))'])
 
 
 %eigenvalue counting fnc
