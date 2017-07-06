@@ -5,12 +5,12 @@ import scipy.io as sio
 
 #swap these three out with the necessary adjustments
 #ideally all running in the same folder but you can adjust if needed
-myfilename = 'eigvals19.mat'
-outfilename = 'eigvals19.tex'
-matrixname = 'C'
+myfilename = 'm2irr.mat'
+outfilename = 'm2irr.tex'
+matrixname = 'c'
 
 output = open(outfilename,'w')
-output.write('\\begin{tabular}{c |c} \nEigenvalue & Multiplicity \\\ \n\\hline\\hline\n')
+output.write('\\begin{tabular}{c |c} \nEigenvalues(m= p= q= ) & Eigenvalues(m= p= q=) \\\ \n\\hline\\hline\n')
 matrix = sio.loadmat(myfilename)
 matrix = matrix[matrixname]
 for i in range(0,len(matrix)):

@@ -1,7 +1,10 @@
 
 m=2; %level
+
+
 p=0.5; %measure parameter
 q=0.5; %resistance parameter
+
 measure = [p/2 (1-p)/2 (1-p)/2 p/2]; %base measure split
 resistance = [q/2 (1-q)/2 (1-q)/2 q/2]; %base resistance split
 %split iteratively...
@@ -39,8 +42,12 @@ end
 [eigvals,indices] = sort(real(diag(D)));
 
 %rescale and plot eigenfnc
+
+
+
 V = V*(1/(max(max(V))));
 plot(linspace(0,1,4^m-1)',[V(:,10) (measure(2:end).*(1/max(measure)))'])
+
 
 %eigenvalue counting fnc
 %counting_graph(eigvals);
@@ -51,12 +58,15 @@ plot(linspace(0,1,4^m-1)',[V(:,10) (measure(2:end).*(1/max(measure)))'])
 %xlabel("m=5 p=0.9 q=0.1")
 
 % Weyl Plot
+
+
 %f = @(x) countingfunction(eigvals,x);
 %plotpoints = arrayfun(f,eigvals);
 %dlm = fitlm(log(eigvals(round(length(eigvals)/2):end)'),log(plotpoints(round(length(eigvals)/2):end)'),'Intercept',false);
 %alpha = table2array(dlm.Coefficients(1,'Estimate'));
 %alpha = alpha(1);
 %plot(log(eigvals'),log(plotpoints'./(eigvals').^alpha))
+
 % xlabel("m=4 p=0.4 q=0.6")
 
 
