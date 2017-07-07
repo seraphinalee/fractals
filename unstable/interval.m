@@ -1,5 +1,5 @@
 
-m=3; %level
+m=5; %level
 
 
 p=0.5; %measure parameter

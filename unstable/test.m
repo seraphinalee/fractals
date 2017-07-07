@@ -1,1 +1,0 @@
-eigenval_spectral(1);
