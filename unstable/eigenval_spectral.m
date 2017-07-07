@@ -1,36 +1,36 @@
-r=1;
-[mu0, mu1, r0, r1] = params(r);
-
-[smalllaplacian,smallplotting_points,smallpoints] = laplaciangen(1,mu0, r0, r1,0);
-[smallunique_eigvals,smalleigvals,smallV] = fullspectra(smalllaplacian);
-%smalleigvals has eigvals on level 1
-
-num_vals = length(smalleigvals);
-[laplacian,plotting_points,points] = laplaciangen(2,mu0, r0, r1,0);
-[unique_eigvals, eigvals, V] = fullspectra(laplacian);
-
-%eigvals in level 2 that is closest in eigfunc to level 1
-eigvals_plot = zeros(num_vals, 4);
-
-%eigvals in level 1 that corresponds to corresponding rows in eigvals_plot
-eigvals_small = zeros(num_vals, 1);
-
-
-
-for search=1:num_vals
-    [hits, diffs, hit_indices] = eigenhunt(smallV(:,search),V,20,points,smallplotting_points);
-    
-    %disp(smallV(:, search));
-    
-    hit_indices = unique(hit_indices);
-    
-    eigvals_plot(search, 1) = eigvals(hit_indices(1));
-    eigvals_plot(search, 2) = eigvals(hit_indices(2));
-    eigvals_plot(search, 3) = eigvals(hit_indices(3));
-    eigvals_plot(search, 4) = eigvals(hit_indices(4));
-    eigvals_small(search) = smalleigvals(search);
-    
-end
+% r=1;
+% [mu0, mu1, r0, r1] = params(r);
+% 
+% [smalllaplacian,smallplotting_points,smallpoints] = laplaciangen(1,mu0, r0, r1,0);
+% [smallunique_eigvals,smalleigvals,smallV] = fullspectra(smalllaplacian);
+% %smalleigvals has eigvals on level 1
+% 
+% num_vals = length(smalleigvals);
+% [laplacian,plotting_points,points] = laplaciangen(2,mu0, r0, r1,0);
+% [unique_eigvals, eigvals, V] = fullspectra(laplacian);
+% 
+% %eigvals in level 2 that is closest in eigfunc to level 1
+% eigvals_plot = zeros(num_vals, 4);
+% 
+% %eigvals in level 1 that corresponds to corresponding rows in eigvals_plot
+% eigvals_small = zeros(num_vals, 1);
+% 
+% 
+% 
+% for search=1:num_vals
+%     [hits, diffs, hit_indices] = eigenhunt(smallV(:,search),V,20,points,smallplotting_points);
+%     
+%     %disp(smallV(:, search));
+%     
+%     hit_indices = unique(hit_indices);
+%     
+%     eigvals_plot(search, 1) = eigvals(hit_indices(1));
+%     eigvals_plot(search, 2) = eigvals(hit_indices(2));
+%     eigvals_plot(search, 3) = eigvals(hit_indices(3));
+%     eigvals_plot(search, 4) = eigvals(hit_indices(4));
+%     eigvals_small(search) = smalleigvals(search);
+%     
+% end
 
 %plot(repmat(eigvals_small,1, 4), eigvals_plot, 'o');
 eig_lev2 = [(5-sqrt(17))/2, (5-sqrt(5))/2, (5-sqrt(5))/2, (5+sqrt(5))/2, (5+sqrt(5))/2, (5+sqrt(17))/2, 5, 5, 5, 6, 6, 6];
@@ -39,9 +39,6 @@ eig_lev2 = [(5-sqrt(17))/2, (5-sqrt(5))/2, (5-sqrt(5))/2, (5+sqrt(5))/2, (5+sqrt
 %plot_v = [eigvals_plot(:, 1); eigvals_plot(:, 2); eigvals_plot(:, 3); eigvals_plot(:, 4)];
 
 eig_lev3 = zeros(length(eig_lev2), 2);
-
-val_to_sort = zeros(length(eig_lev2)*4, 1);
-
 
 for i=1:length(eig_lev2)
     res1 = (5+(25-4*eig_lev2(i))^(1/2))/2;
@@ -53,7 +50,6 @@ for i=1:length(eig_lev2)
         eig_lev3(i, 2) = res2;
     end
 end
-
 
 eig_lev4 = zeros(length(eig_lev2), 4);
 for j=1:length(eig_lev2)
@@ -85,17 +81,16 @@ for j=1:length(eig_lev2)
     end
 
 end
-eigtest = eig_lev4;
-eigtest1 = eigtest ./ min(eig_lev4(eig_lev4 > 0));
 eig_lev4 = eig_lev4 ./ min(eig_lev4(eig_lev4 > 0));
 
+val_to_sort = zeros(length(eig_lev2)*4, 1);
 for k = 1: length(eig_lev2)
     for l = 1:4
         val_to_sort(4*(k-1)+l) = eig_lev4(k, l);
     end
 end
 
-[sorted, I] = sort(val_to_sort);
+[sorted, I] = sort(val_to_sort); %sorted has been renormalized, by eig_lev4 above
 % disp(I);
 for m = 1:length(sorted)
     col = mod(m-1, 4)+1;
@@ -113,14 +108,36 @@ for i = 1:length(eig_lev2)
         end
     end
 end
-
-[mu0, mu1, r0, r1] = params(1.01);
+[mu0, mu1, r0, r1] = params(1);
 [laplacian,plotting_points,points] = laplaciangen(2,mu0, r0, r1,0);
-[laplacian1,plotting_points1,points1] = laplaciangen(1,mu0, r0, r1,0);
 [unique_eigvals, eigvals, V] = fullspectra(laplacian);
-[unique_eigvals1, eigvals1, V1] = fullspectra(laplacian1);
+eigvals = eigvals./min(eigvals);
+disp(sorted)
+mapping = eigvalmatch(eig_lev4, sorted', eigvals);
+for i=1:100
+    sorted = eigvals;
+    [mu0, mu1, r0, r1] = params(1+i/10);
+    [laplacian,plotting_points,points] = laplaciangen(2,mu0, r0, r1,0);
+    [unique_eigvals, eigvals, V] = fullspectra(laplacian);
+    sorted = sorted./min(sorted(sorted > 0));
+    eigvals = eigvals./min(eigvals(eigvals > 0));
+    mapping = eigvalmatch(mapping, sorted', eigvals);
+    disp(mapping);
+    pause();
+end
 
-eigvals1 = eigvals1./min(eigvals1);
+mapped = zeros(size(mapping));
+
+for i=1:length(mapping)
+    for j=1:4
+        if mapping(i,j) ~= 0
+            mapped(i,j) = eigvals(mapping(i,j));
+        end
+    end
+end
+
+plot(eigvals1, mapped(:,1), 'o', eigvals1, mapped(:,2), 'o',eigvals1, mapped(:, 3), 'o', eigvals1, mapped(:,4), 'o');
+
 % 
 % 
 % %matches eig_lev4 to mapping from previous level to eigvals
@@ -163,33 +180,6 @@ eigvals1 = eigvals1./min(eigvals1);
 %     born_values(i) = eigvals(born(i));
 % end
 % born_values = (born_values./max(born_values)).*6;
-
-mapping = eig_lev4;
-for i=1:1000
-    
-    [mu0, mu1, r0, r1] = params(1+i/1000);
-    [laplacian,plotting_points,points] = laplaciangen(2,mu0, r0, r1,0);
-    [unique_eigvals, eigvals, V] = fullspectra(laplacian);
-    sorted = sorted.*min(eigvals);
-    disp(size(sorted));
-    mapping = eigvalmatch(mapping, sorted, eigvals);
-    disp(mapping);
-    sorted = eigvals';
-end
-
-mapped = zeros(size(mapping));
-
-for i=1:length(mapping)
-    for j=1:4
-        if mapping(i,j) ~= 0
-            mapped(i,j) = eigvals(mapping(i,j));
-        end
-    end
-end
-
-plot(eigvals1, mapped(:,1), 'o', eigvals1, mapped(:,2), 'o',eigvals1, mapped(:, 3), 'o', eigvals1, mapped(:,4), 'o');
-
-
 %plot(ones(length(exp_eig), length(exp_eig)), exp_eig, 'o', zeros(length(eig4), length(eig4)), eig4, 'o');
 
 
