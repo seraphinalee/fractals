@@ -12,10 +12,10 @@ for i = 2:m
     newres  = [];
     newxcors = [xcors(1)];
     for j =1:length(measure)
-        if measure(j)>=cutoff^i
+        if measure(j)>=cutoff^(i+1)
             newxcors = [newxcors xcors(j)+(xcors(j+1)-xcors(j)).*[1/4 1/2 3/4 1]];
             newmeas = [newmeas measure(j)*[p/2 (1-p)/2 (1-p)/2 p/2]];
-            newres = [newres resistance(j)*[p/2 (1-p)/2 (1-p)/2 p/2]];
+            newres = [newres resistance(j)*[q/2 (1-q)/2 (1-q)/2 q/2]];
         else
             newmeas = [newmeas measure(j)];
             newres = [newres resistance(j)];
