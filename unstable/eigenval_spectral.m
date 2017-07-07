@@ -113,8 +113,7 @@ eigvals = eigvals./min(eigvals(eigvals>0));
 eigtesting = eigvals;
 eigvals1 = eigvals1./min(eigvals1(eigvals1>0));
 
-mapping = eigvalmatch(eig_lev4, sorted', eigv
-als);
+mapping = eigvalmatch(eig_lev4, sorted', eigvals);
 mapped1 = zeros(size(mapping));
 for i=1:length(mapping)
     for j=1:4
@@ -153,7 +152,7 @@ for i=1:length(mapping)
     end
 end
 
-plot(eigvals1, mapped(:,1), eigvals1, mapped(:,2),eigvals1, mapped(:, 3), eigvals1, mapped(:,4));
+plot(eigvals1, mapped(:,1), 'o', eigvals1, mapped(:,2), 'o', eigvals1, mapped(:, 3), 'o', eigvals1, mapped(:,4), 'o');
 
 % 
 % 

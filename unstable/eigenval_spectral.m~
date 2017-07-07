@@ -92,13 +92,7 @@ for k = 1: length(eig_lev2)
 end
 
 [sorted, I] = sort(val_to_sort); %sorted has been renormalized, by eig_lev4 above
-% disp(I);
-for m = 1:length(sorted)
-    col = mod(m-1, 4)+1;
-    row = (m-col)/4+1;
-    eig_lev4(row, col) = I(m);
-    disp(eig_lev4(row,col));
-end
+
 
 for i = 1:length(eig_lev2)
     for j=1:4
@@ -146,8 +140,6 @@ for i=1:1000
         end
     end
     end
-disp(mapped);
-pause();
 end
 disp(1+i/1000)
 mapped = zeros(size(mapping));
@@ -160,7 +152,7 @@ for i=1:length(mapping)
     end
 end
 
-plot(eigvals1, mapped(:,1), eigvals1, mapped(:,2),eigvals1, mapped(:, 3), eigvals1, mapped(:,4));
+plot(eigvals1, mapped(:,1), 'o', eigvals1, mapped(:,2), 'oeigvals1, mapped(:, 3), eigvals1, mapped(:,4));
 
 % 
 % 
