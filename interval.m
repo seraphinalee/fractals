@@ -1,11 +1,11 @@
 
-m=3; %level
+
+m=5; %level
 
 
-p=0.5; %measure parameter
-q=0.5; %resistance parameter
-cutoff = 1/4;
-
+p=0.9; %measure parameter
+q=0.1; %resistance parameter
+cutoff = 0;
 
 
 
@@ -23,7 +23,7 @@ for i = 2:m
         if measure(j)>=cutoff^i
             newxcors = [newxcors xcors(j)+(xcors(j+1)-xcors(j)).*[1/4 1/2 3/4 1]];
             newmeas = [newmeas measure(j)*[p/2 (1-p)/2 (1-p)/2 p/2]];
-            newres = [newres resistance(j)*[p/2 (1-p)/2 (1-p)/2 p/2]];
+            newres = [newres resistance(j)*[q/2 (1-q)/2 (1-q)/2 q/2]];
         else
             newmeas = [newmeas measure(j)];
             newres = [newres resistance(j)];
@@ -59,11 +59,11 @@ eigfnc = V(:,indices);
 
 
 
+
+
+
 V = V*(1/(max(max(V))));
-plot(xcors(1:end),[0;V(:,indices(3));0])
-
-
-
+%plot(xcors(1:end),[0;V(:,indices(3));0])
 
 
 %eigenvalue counting fnc
@@ -75,12 +75,11 @@ plot(xcors(1:end),[0;V(:,indices(3));0])
 %xlabel("m=5 p=0.9 q=0.1")
 
 % Weyl Plot
-%f = @(x) countingfunction(eigvals,x);
-%plotpoints = arrayfun(f,eigvals);
-%dlm = fitlm(log(eigvals(round(length(eigvals)/2):end)'),log(plotpoints(round(length(eigvals)/2):end)'),'Intercept',false);
-%alpha = table2array(dlm.Coefficients(1,'Estimate'));
-%alpha = alpha(1);
-%plot(log(eigvals'),log(plotpoints'./(eigvals').^alpha))
+f = @(x) countingfunction(eigvals,x);
+plotpoints = arrayfun(f,eigvals);
+p = polyfit(log(eigvals),log(plotpoints),1);
+alpha = p(1);
+plot(log(eigvals'),log(plotpoints'./(eigvals').^alpha))
 % xlabel("m=5 p=0.1 q=0.9")
 
 %plot(linspace(0,1,4^m)', log([measure'./max(measure) resistance'./max(resistance)]))
