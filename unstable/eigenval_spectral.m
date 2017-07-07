@@ -152,6 +152,9 @@ for i=1:length(mapping)
     end
 end
 
+[laplacian1,plotting_points1,points1] = laplaciangen(1,mu0, r0, r1,0);
+[unique_eigvals1, eigvals1, V1] = fullspectra(laplacian1);
+
 plot(eigvals1, mapped(:,1), 'o', eigvals1, mapped(:,2), 'o', eigvals1, mapped(:, 3), 'o', eigvals1, mapped(:,4), 'o');
 
 % 
