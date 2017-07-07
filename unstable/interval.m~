@@ -1,10 +1,10 @@
 
-m=3; %level
+m=4; %level
 
 
 p=0.5; %measure parameter
 q=0.5; %resistance parameter
-cutoff = 1/4;
+cutoff = 1/5;
 
 measure = [p/2 (1-p)/2 (1-p)/2 p/2]; %base measure split
 xcors = [0 1/4 1/2 3/4 1];
@@ -17,14 +17,14 @@ for i = 2:m
     newres  = [];
     newxcors = [xcors(1)];
     for j =1:length(measure)
-        if measure(j)>=cutoff^i
+        if measure(j)>=cutoff^m
             newxcors = [newxcors xcors(j)+(xcors(j+1)-xcors(j)).*[1/4 1/2 3/4 1]];
             newmeas = [newmeas measure(j)*[p/2 (1-p)/2 (1-p)/2 p/2]];
             newres = [newres resistance(j)*[p/2 (1-p)/2 (1-p)/2 p/2]];
         else
             newmeas = [newmeas measure(j)];
             newres = [newres resistance(j)];
-            newxcors = [newxcors xcors(j+1)];
+            newxcors = [newxcors xcors(j)];
         end
     end
     measure = newmeas;
@@ -53,7 +53,7 @@ end
 
 
 V = V*(1/(max(max(V))));
-plot(xcors(1:end),[0;V(:,indices(3));0])
+plot(xcors(1:end),[0;V(:,3);0])
 
 
 %eigenvalue counting fnc
