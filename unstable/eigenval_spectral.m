@@ -35,9 +35,6 @@
 %plot(repmat(eigvals_small,1, 4), eigvals_plot, 'o');
 eig_lev2 = [(5-sqrt(17))/2, (5-sqrt(5))/2, (5-sqrt(5))/2, (5+sqrt(5))/2, (5+sqrt(5))/2, (5+sqrt(17))/2, 5, 5, 5, 6, 6, 6];
 
-%checking calculations
-%plot_v = [eigvals_plot(:, 1); eigvals_plot(:, 2); eigvals_plot(:, 3); eigvals_plot(:, 4)];
-
 eig_lev3 = zeros(length(eig_lev2), 2);
 
 for i=1:length(eig_lev2)
@@ -156,6 +153,19 @@ end
 [unique_eigvals1, eigvals1, V1] = fullspectra(laplacian1);
 
 plot(eigvals1, mapped(:,1), 'o', eigvals1, mapped(:,2), 'o', eigvals1, mapped(:, 3), 'o', eigvals1, mapped(:,4), 'o');
+
+x = polyfit(sqrt(eigvals1'), mapped(:,1),1);
+
+
+
+check = mapped(1,1);
+ind = 0;
+
+for i = 1:length(eigvals)
+    if (eigvals(i) == check)
+        ind = i;
+    end
+end
 
 % 
 % 
