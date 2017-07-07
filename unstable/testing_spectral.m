@@ -6,6 +6,9 @@
 
 gasketgraph(plotting_points1, V1(:, 3));
 
-graph_restrict = restrict_points_spec(V(:, 20), points, plotting_points1);
+graph_restrict = restrict_points_spec(V1(:, 3), V(:, 20), points, plotting_points1);
 
 %gasketgraph(plotting_points1, graph_restrict);
+
+disp(graph_restrict./min(graph_restrict));
+disp(V1(:, 3)./min(V1(:, 3)));
