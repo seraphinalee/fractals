@@ -97,6 +97,7 @@ for m = 1:length(sorted)
     col = mod(m-1, 4)+1;
     row = (m-col)/4+1;
     eig_lev4(row, col) = I(m);
+    disp(eig_lev4(row,col));
 end
 
 for i = 1:length(eig_lev2)
@@ -115,6 +116,7 @@ end
 [laplacian1,plotting_points1,points1] = laplaciangen(1,mu0, r0, r1,0);
 [unique_eigvals1, eigvals1, V1] = fullspectra(laplacian1);
 eigvals = eigvals./min(eigvals(eigvals>0));
+eigtesting = eigvals;
 eigvals1 = eigvals1./min(eigvals1(eigvals1>0));
 
 mapping = eigvalmatch(eig_lev4, sorted', eigvals);
@@ -127,7 +129,7 @@ for i=1:length(mapping)
     end
 end
 plot(eigvals1, mapped1(:,1), 'o', eigvals1, mapped1(:,2), 'o', eigvals1, mapped1(:, 3), 'o', eigvals1, mapped1(:,4), 'o'); %for comparison
-
+disp(mapped1);
 for i=1:1000
     sorted = eigvals;
     [mu0, mu1, r0, r1] = params(1+i/1000);
@@ -143,7 +145,9 @@ for i=1:1000
             mapped(k,j) = eigvals(mapping(k,j));
         end
     end
-end
+    end
+disp(mapped);
+pause();
 end
 disp(1+i/1000)
 mapped = zeros(size(mapping));

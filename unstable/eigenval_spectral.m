@@ -92,12 +92,7 @@ for k = 1: length(eig_lev2)
 end
 
 [sorted, I] = sort(val_to_sort); %sorted has been renormalized, by eig_lev4 above
-% disp(I);
-for m = 1:length(sorted)
-    col = mod(m-1, 4)+1;
-    row = (m-col)/4+1;
-    eig_lev4(row, col) = I(m);
-end
+
 
 for i = 1:length(eig_lev2)
     for j=1:4
@@ -116,10 +111,10 @@ end
 [unique_eigvals1, eigvals1, V1] = fullspectra(laplacian1);
 eigvals = eigvals./min(eigvals(eigvals>0));
 eigtesting = eigvals;
-sorttesting = sorted;
 eigvals1 = eigvals1./min(eigvals1(eigvals1>0));
 
-mapping = eigvalmatch(eig_lev4, sorted', eigvals);
+mapping = eigvalmatch(eig_lev4, sorted', eigv
+als);
 mapped1 = zeros(size(mapping));
 for i=1:length(mapping)
     for j=1:4
@@ -146,8 +141,6 @@ for i=1:1000
         end
     end
     end
-disp(mapped);
-pause();
 end
 disp(1+i/1000)
 mapped = zeros(size(mapping));
