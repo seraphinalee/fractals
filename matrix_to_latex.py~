@@ -7,7 +7,7 @@ import scipy.io as sio
 #ideally all running in the same folder but you can adjust if needed
 myfilename = 'm=1.mat'
 outfilename = 'm=1.tex'
-matrixname = 'eigfnc'
+matrixname = 'c'
 
 output = open(outfilename,'w')
 output.write('\\begin{tabular}{c |c} \nEigenvalues(m= p= q= ) & Eigenvalues(m= p= q=) \\\ \n\\hline\\hline\n')
