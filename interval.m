@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 m=3; %level
 
 
@@ -8,7 +8,6 @@ cutoff = 1/4;
 
 
 
->>>>>>> a8018cbaec38ec4737dd9571aa06cb2f509fc408
 
 measure = [p/2 (1-p)/2 (1-p)/2 p/2]; %base measure split
 xcors = [0 1/4 1/2 3/4 1];
@@ -35,12 +34,10 @@ for i = 2:m
     resistance = newres;
     xcors = newxcors;
 end
-<<<<<<< HEAD
+
 laplacian = zeros(length(xcors)-2);
 for i = 1:length(xcors)-2
-=======
 
->>>>>>> a8018cbaec38ec4737dd9571aa06cb2f509fc408
     avgmeasure = (measure(i)+measure(i+1))/2;
     laplacian(i,i) = (1/avgmeasure)*(1/resistance(i)+1/resistance(i+1));
 end
@@ -59,7 +56,7 @@ end
 [eigvals,indices] = sort(real(diag(D)));
 eigfnc = V(:,indices);
 
-<<<<<<< HEAD
+
 
 
 V = V*(1/(max(max(V))));
@@ -67,7 +64,7 @@ plot(xcors(1:end),[0;V(:,indices(3));0])
 
 
 
->>>>>>> a8018cbaec38ec4737dd9571aa06cb2f509fc408
+
 
 %eigenvalue counting fnc
 %counting_graph(eigvals);
