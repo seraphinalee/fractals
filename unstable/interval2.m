@@ -1,4 +1,4 @@
-p=0.70;
+p=0.7;
 q=1-p;
 cutoff = 0;
 m=2;
@@ -27,12 +27,42 @@ for i = 2:m
     resistance = newres;
     xcors = newxcors;
 end
+pointmass = (measure(1:end-1)+measure(2:end))/2;
+p=1-p;
+q=1-q;
+resistance = [q/2 (1-q)/2 (1-q)/2 q/2]; %base resistance split
+measure = [p/2 (1-p)/2 (1-p)/2 p/2]; %base measure split
+xcors = [0 1/4 1/2 3/4 1];
+for i = 2:m
+    %do a 4x repelem clone, following with a base unit multiplied
+    %to get the desired self similar structure
+    newmeas = [];
+    newres  = [];
+    newxcors = [xcors(1)];
+    for j =1:length(measure)
+        if measure(j)>=cutoff^(i+1)
+            newxcors = [newxcors xcors(j)+(xcors(j+1)-xcors(j)).*[1/4 1/2 3/4 1]];
+            newmeas = [newmeas measure(j)*[p/2 (1-p)/2 (1-p)/2 p/2]];
+            newres = [newres resistance(j)*[q/2 (1-q)/2 (1-q)/2 q/2]];
+        else
+            newmeas = [newmeas measure(j)];
+            newres = [newres resistance(j)];
+            newxcors = [newxcors xcors(j+1)];
+        end
+    end
+    measure = newmeas;
+    resistance = newres;
+    xcors = newxcors;
+end
+
+otherpointmass = (measure(1:end-1)+measure(2:end))/2;
 
 
 
 
 [xcors,laplacian] = intervallapgen(m,p,1-p,0); %m,p,q,cutoff
 [~,eigvals,V] = fullspectra(laplacian);
+otherlaplacian = laplacian;
 p=1-p;
 [xcors,laplacian] = intervallapgen(m,p,1-p,0); %m,p,q,cutoff
 [~,othereigvals,otherV] = fullspectra(laplacian);
@@ -41,7 +71,12 @@ otherV = [zeros(1, length(otherV));otherV;zeros(1,length(otherV))];
 for i=1:length(V)
     %sin(2*pi*xcors)' -sin(2*pi*xcors)' 
     %[0; resistance(1:end-1)'/max(resistance); 0]
-    plot(xcors,[V(:,i) otherV(:,i)])
+    %subplot(3,1,1)
+    plot(xcors,[V(:,i) otherV(:,i)]) %[0;transform(-otherV(:,i)')';0]])
+    %subplot(3,1,2)
+    %bar(xcors(2:end),resistance(1:end)')
+    %subplot(3,1,3)
+    %bar(xcors(2:end),transform(measure(1:end))')
     xlabel(strcat(num2str(eigvals(i)),'____',num2str(othereigvals(i))))
     pause()
     clf

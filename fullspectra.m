@@ -14,7 +14,7 @@ for i =1:length(unique_eigvals)
 end
 
 V_out = zeros(length(V));
-V = V./(max(abs(V)));
+V = V./repmat(max(abs(V)),length(V),1);
 
 for j = 1:length(indices)
     V_out(:, j) = V(:, indices(j));
