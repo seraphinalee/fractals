@@ -1,7 +1,7 @@
-p=0.70;
+p=0.1;
 q=1-p;
 cutoff = 0;
-m=2;
+m=5;
 resistance = [q/2 (1-q)/2 (1-q)/2 q/2]; %base resistance split
 measure = [p/2 (1-p)/2 (1-p)/2 p/2]; %base measure split
 xcors = [0 1/4 1/2 3/4 1];
@@ -28,9 +28,6 @@ for i = 2:m
     xcors = newxcors;
 end
 
-
-
-
 [xcors,laplacian] = intervallapgen(m,p,1-p,0); %m,p,q,cutoff
 [~,eigvals,V] = fullspectra(laplacian);
 p=1-p;
@@ -38,14 +35,14 @@ p=1-p;
 [~,othereigvals,otherV] = fullspectra(laplacian);
 V = [zeros(1, length(V));V;zeros(1,length(V))];
 otherV = [zeros(1, length(otherV));otherV;zeros(1,length(otherV))];
-for i=1:length(V)
-    %sin(2*pi*xcors)' -sin(2*pi*xcors)' 
-    %[0; resistance(1:end-1)'/max(resistance); 0]
-    plot(xcors,[V(:,i) otherV(:,i)])
-    xlabel(strcat(num2str(eigvals(i)),'____',num2str(othereigvals(i))))
-    pause()
-    clf
-end
+% for i=1:length(V)
+%     sin(2*pi*xcors)' -sin(2*pi*xcors)' 
+%     [0; resistance(1:end-1)'/max(resistance); 0]
+%     plot(xcors,[V(:,i) otherV(:,i)])
+%     xlabel(strcat(num2str(eigvals(i)),'____',num2str(othereigvals(i))))
+%     pause()
+%     clf
+% end
 
 
 
@@ -63,13 +60,19 @@ end
 %plot(log(eigvals),zeros(length(eigvals),1),'o')
 %xlabel("m=5 p=0.9 q=0.1")
 
-% % Weyl Plot
-% f = @(x) countingfunction(eigvals,x);
-% plotpoints = arrayfun(f,eigvals);
-% p = polyfit(log(eigvals),log(plotpoints),1);
-% alpha = p(1);
-% plot(log(eigvals'),log(plotpoints'./(eigvals').^alpha))
-% xlabel("m=5 p=0.1 q=0.9")
+% Weyl Plot
+f = @(x) countingfunction(eigvals,x);
+plotpoints = arrayfun(f,eigvals);
+p = polyfit(log(eigvals),log(plotpoints),1);
+alpha = p(1);
+otherplotpoints = arrayfun(f,othereigvals);
+% [yval, indices] = sort(log(plotpoints'./(eigvals').^alpha));
+% [otheyval, indices] = sort(log(otherplotpoints'./(othereigvals').^alpha));
+% xval = log(eigvals');
+% othexval = log(othereigvals');
+% plot(log(eigvals'),log(plotpoints'./(eigvals').^alpha)); hold on;
+% plot(log(othereigvals'), log(otherplotpoints'./(othereigvals').^alpha))
+% xlabel("Weyl Plot m=5 alpha=0.4593")
 
 %plot(linspace(0,1,4^m)', log([measure'./max(measure) resistance'./max(resistance)]))
 
