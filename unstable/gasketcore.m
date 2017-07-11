@@ -6,13 +6,13 @@ r = 1;
 %[laplacian,plotting_points,points] = neumann(4,mu0, r0, r1,0);
 [laplacian,plotting_points,points] = laplaciangen(3,mu0, r0, r1,0);
 %[V,D] = partialspectra(laplacian,30);
-r = twin(r);
-[mu0, mu1, r0, r1] = params(r);
+%r = twin(r);
+%[mu0, mu1, r0, r1] = params(r);
 [unique_eigvals, eigvals, V] = fullspectra(laplacian);
-[otherlaplacian,plotting_points,points] = laplaciangen(3,mu0, r0, r1,0);
+%[otherlaplacian,plotting_points,points] = laplaciangen(3,mu0, r0, r1,0);
 
-[unique_eigvals, othereigvals, V] = fullspectra(otherlaplacian);
-a=[eigvals;othereigvals]';
+%[unique_eigvals, othereigvals, V] = fullspectra(otherlaplacian);
+%a=[eigvals;othereigvals]';
 %output = [eigvals;othereigvals]';
 %[smallunique_eigvals,smalleigvals,smallV] = fullspectra(smalllaplacian);
 
