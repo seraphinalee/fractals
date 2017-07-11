@@ -1,7 +1,7 @@
 p=0.7;
 q=1-p;
 cutoff = 0;
-m=2;
+m=3;
 resistance = [q/2 (1-q)/2 (1-q)/2 q/2]; %base resistance split
 measure = [p/2 (1-p)/2 (1-p)/2 p/2]; %base measure split
 xcors = [0 1/4 1/2 3/4 1];
