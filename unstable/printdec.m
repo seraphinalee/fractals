@@ -1,17 +1,19 @@
-p=0.7;
+p=0.9;
 q=1-p;
 cutoff = 0;
-m=2;
+m=1;
 [xcors,smalllaplacian] = intervallapgen(m,p,1-p,0); %m,p,q,cutoff
 [~,smalleigvals,smallV] = fullspectra(smalllaplacian);
-m=3;
+m=2;
 [xcors,laplacian] = intervallapgen(m,p,1-p,0); %m,p,q,cutoff
 [~,eigvals,V] = fullspectra(laplacian);
 test = zeros(length(eigvals),1);
 for i=1:length(smalleigvals)
-    test(4*i-3:4*i) = lambdamap(smalleigvals(i),p,3);
+    test(4*i-3:4*i) = intlambdamap(smalleigvals(i),p,2);
 end
-test = sort(test);
+%test = sort(test);
+test = [test eigvals']
+
 
 
 
