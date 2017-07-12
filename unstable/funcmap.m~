@@ -99,23 +99,8 @@ for i =1:length(cells)
                 end
                 
                 neweigenfunc(current) = _____(a,b,c)
-                
             elseif all(head==[1;2;0]) || all(head==[2;0;1]) || all(head==[0;1;2])   %z case
-                if all(head==[1;2;0])
-                    a = 
-                    b = 
-                    c = 
-                elseif all(head[2;0;1])
-                    a = 
-                    b = 
-                    c = 
-                else
-                    a = 
-                    b = 
-                    c = 
-                end
                 
-                neweigenfunc(current) = _____(a,b,c)                
                 
                 
             

@@ -1,4 +1,4 @@
-function [ laplacian,plotting_points,points ] = laplaciangen(m,mu0,r0,r1,cutoff)
+function [ laplacian,plotting_points,points,cells] = laplaciangen(m,mu0,r0,r1,cutoff)
 %UNTITLED3 Summary of this function goes here
 %   Detailed explanation goes here
 mu1 = 1/6-mu0/2;

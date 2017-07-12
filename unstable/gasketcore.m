@@ -4,7 +4,7 @@ r = 2;
 
 %[smalllaplacian,smallplotting_points,smallpoints] = laplaciangen(2,mu0, r0, r1,0);
 %[laplacian,plotting_points,points] = neumann(4,mu0, r0, r1,0);
-[laplacian,plotting_points,points] = laplaciangen(3,mu0, r0, r1,0);
+[laplacian,plotting_points,points,cells] = laplaciangen(2,mu0, r0, r1,0);
 %[V,D] = partialspectra(laplacian,30);
 %r = twin(r);
 %[mu0, mu1, r0, r1] = params(r);
