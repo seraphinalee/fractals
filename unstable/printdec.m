@@ -1,18 +1,46 @@
-p=0.9;
-q=1-p;
-cutoff = 0;
+r = 1;
 m=1;
-[xcors,smalllaplacian] = intervallapgen(m,p,1-p,0); %m,p,q,cutoff
-[~,smalleigvals,smallV] = fullspectra(smalllaplacian);
+[mu0, mu1, r0, r1] = params(r);
+%search = 4;
+
+[smalllaplacian,plotting_points,points] = laplaciangen(m,mu0, r0, r1,0);
+[unique_eigvals, smalleigvals, V] = fullspectra(smalllaplacian);
 m=2;
-[xcors,laplacian] = intervallapgen(m,p,1-p,0); %m,p,q,cutoff
-[~,eigvals,V] = fullspectra(laplacian);
+[laplacian,plotting_points,points] = laplaciangen(m,mu0, r0, r1,0);
+[unique_eigvals, eigvals, V] = fullspectra(laplacian);
 test = zeros(length(eigvals),1);
 for i=1:length(smalleigvals)
-    test(4*i-3:4*i) = intlambdamap(smalleigvals(i),p,2);
+    test(5*i-4:5*i) = lambdamap(smalleigvals(i),r,2);
 end
 %test = sort(test);
-test = [test eigvals']
+test = [sort(test) eigvals'];
+
+
+
+
+
+
+
+
+
+
+
+
+% p=0.5;
+% q=1-p;
+% cutoff = 0;
+% m=1;
+% [xcors,smalllaplacian] = intervallapgen(m,p,1-p,0); %m,p,q,cutoff
+% [~,smalleigvals,smallV] = fullspectra(smalllaplacian);
+% m=2;
+% [xcors,laplacian] = intervallapgen(m,p,1-p,0); %m,p,q,cutoff
+% [~,eigvals,V] = fullspectra(laplacian);
+% test = zeros(length(eigvals),1);
+% for i=1:length(smalleigvals)
+%     test(4*i-3:4*i) = intlambdamap(smalleigvals(i),p,2);
+% end
+% %test = sort(test);
+% test = [test eigvals'];
 
 
 
@@ -41,5 +69,5 @@ test = [test eigvals']
 % alpha = p(1);
 % plot(log(eigvals'),log(plotpoints'./(eigvals').^alpha))
 % xlabel("m=5 p=0.1 q=0.9")
-
+ 
 %plot(linspace(0,1,4^m)', log([measure'./max(measure) resistance'./max(resistance)]))
