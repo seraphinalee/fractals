@@ -8,12 +8,12 @@ m=1;
 m=2;
 [laplacian,plotting_points,points] = laplaciangen(m,mu0, r0, r1,0);
 [unique_eigvals, eigvals, V] = fullspectra(laplacian);
-test = zeros(length(eigvals),1);
+test = [];
 for i=1:length(smalleigvals)
-    test(5*i-4:5*i) = lambdamap(smalleigvals(i),r,2);
+    test= [test lambdamap(smalleigvals(i),r,2)];
 end
 %test = sort(test);
-test = [sort(test) eigvals'];
+test = [[sort(test) zeros(1,length(eigvals)-length(test))];eigvals]';
 
 
 
