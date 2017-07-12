@@ -1,4 +1,4 @@
-r = 1;
+r = twin(1);
 m=1;
 [mu0, mu1, r0, r1] = params(r);
 %search = 4;
