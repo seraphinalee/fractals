@@ -9,8 +9,10 @@ r = 2;
 %r = twin(r);
 %[mu0, mu1, r0, r1] = params(r);
 [unique_eigvals, eigvals, V] = fullspectra(laplacian);
-[a,b]=lambdamap(eigvals(3),r,3);
-[extension,newplotting_points,~,~] = funcmap(V(:,3),min(b),r,3,plotting_points,points,cells);
+[a,b]=lambdamap(eigvals(40),r,3);
+[extension,newplotting_points,newpoints,newcells] = funcmap(V(:,40),min(b),r,3,plotting_points,points,cells);
+[a,b]=lambdamap(min(b),r,4);
+[extension,newplotting_points,~,~] = funcmap(extension,min(b),r,4,newplotting_points,newpoints,newcells);
 %[otherlaplacian,plotting_points,points] = laplaciangen(3,mu0, r0, r1,0);
 
 %[unique_eigvals, othereigvals, V] = fullspectra(otherlaplacian);
@@ -22,7 +24,9 @@ r = 2;
 %[hits diffs hit_indices] = eigenhunt(smallV(:,smallindices(search)),V,20,points,smallplotting_points);
 
 %subplot(1,2,1)
-gasketgraph(newplotting_points,extension);
+gasketgraphred(newplotting_points,extension);
+hold on
+gasketgraph(plotting_points,V(:,40));
 %subplot(1,2,2)
 %for i =1:30
 %    gasketgraph(plotting_points,V(:,i));
