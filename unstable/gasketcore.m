@@ -1,15 +1,16 @@
-r = 1;
+r = 2;
 [mu0, mu1, r0, r1] = params(r);
 %search = 4;
 
 %[smalllaplacian,smallplotting_points,smallpoints] = laplaciangen(2,mu0, r0, r1,0);
 %[laplacian,plotting_points,points] = neumann(4,mu0, r0, r1,0);
-[laplacian,plotting_points,points,cells] = laplaciangen(1,mu0, r0, r1,0);
+[laplacian,plotting_points,points,cells] = laplaciangen(2,mu0, r0, r1,0);
 %[V,D] = partialspectra(laplacian,30);
 %r = twin(r);
 %[mu0, mu1, r0, r1] = params(r);
 [unique_eigvals, eigvals, V] = fullspectra(laplacian);
-[extension,plotting_points,~,~] = funcmap(V(:,1),0.000717456880521,1,2,plotting_points,points,cells);
+[a,b]=lambdamap(eigvals(3),r,3);
+[extension,newplotting_points,~,~] = funcmap(V(:,3),min(b),r,3,plotting_points,points,cells);
 %[otherlaplacian,plotting_points,points] = laplaciangen(3,mu0, r0, r1,0);
 
 %[unique_eigvals, othereigvals, V] = fullspectra(otherlaplacian);
@@ -21,7 +22,7 @@ r = 1;
 %[hits diffs hit_indices] = eigenhunt(smallV(:,smallindices(search)),V,20,points,smallplotting_points);
 
 %subplot(1,2,1)
-gasketgraph(plotting_points,extension);
+gasketgraph(newplotting_points,extension);
 %subplot(1,2,2)
 %for i =1:30
 %    gasketgraph(plotting_points,V(:,i));

@@ -139,7 +139,7 @@ for i =1:length(cells)
                          b = x2;
                          c = x0;
                      end
-                elseif head(3) == 2
+                 if head(3) == 2
                      a = x2;
                      if head(2) == 0
                          b = x0;
@@ -147,9 +147,8 @@ for i =1:length(cells)
                      else
                          b = x1;
                          c = x0;
-                     end
-                end
-                neweigenfunc(current) = -(2*(a*(((lambda-2)^2)*(15-8*lambda+lambda^2)+(r^2)*(12-56*lambda+45*lambda^2-12*lambda^3+lambda^4)+2*r*(28-78*lambda+50*lambda^2-12*lambda^3+lambda^4))+2*r*(c*(10-r*(lambda-6)-3*lambda)+b*(14-7*lambda+lambda^2+r*(6-7*lambda+lambda^2)))))/((4-2*(2+3*r)*lambda+(1+r)*lambda^2)*(-30+31*lambda-10*lambda^2+lambda^3+r^2*(-18+27*lambda-10*lambda^2+lambda^3)+2*r*(-26+31*lambda-10*lambda^2+lambda^3)));
+                 end
+             neweigenfunc(current) = -((2*(a*((lambda-2)^2*(15-8*lambda+lambda^2)+r^2*(12-56*lambda+45*lambda^2-12*lambda^3+lambda^4))+2*r*(28-78*lambda+50*lambda^2-12*lambda^3+lambda^4))+2*r*(c*(10-r*(lambda-6)-3*lambda)+b*(14-7*lambda+lambda^2+r*(6-7*lambda+lambda^2)))))/((4-2*(2+3*r)*lambda+(1+r)*lambda^2)*(-30+31*lambda-10*lambda^2+lambda^3+r^2*(-18+27*lambda-10*lambda^2+lambda^3)+2*r*(-26+31*lambda-10*lambda^2+lambda^3)));
              end
         end
     end
