@@ -29,10 +29,8 @@ while maxdex2 > mindex2 + 1
     end
 end
 eigvals = eigvals(mindex1:maxdex2);
-f = @(x) countingfunction(eigvals,x);
-plotpoints = arrayfun(f,eigvals);
-plot(eigvals,plotpoints)
-
+eigvals = unique(eigvals')';
+plot([0;1],[eigvals';eigvals'])
 
 
 
