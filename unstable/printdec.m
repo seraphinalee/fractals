@@ -1,4 +1,4 @@
-r = twin(1);
+r = 1;
 m=1;
 [mu0, mu1, r0, r1] = params(r);
 %search = 4;
@@ -12,10 +12,14 @@ test = [];
 for i=1:length(smalleigvals)
     test= [test lambdamap(smalleigvals(i),r,2)];
 end
-%test = sort(test);
+test = sort(test);
 test = [[sort(test) zeros(1,length(eigvals)-length(test))];eigvals]';
 
 
+% a =repmat(eigvals,120,1)
+% b = a'
+% a./b
+% c = reshape(ans, [], 1)
 
 
 
@@ -25,21 +29,21 @@ test = [[sort(test) zeros(1,length(eigvals)-length(test))];eigvals]';
 
 
 
-
-% p=0.5;
+% 
+% p=0.7;
 % q=1-p;
 % cutoff = 0;
-% m=1;
+% m=0;
 % [xcors,smalllaplacian] = intervallapgen(m,p,1-p,0); %m,p,q,cutoff
 % [~,smalleigvals,smallV] = fullspectra(smalllaplacian);
-% m=2;
+% m=m+1;
 % [xcors,laplacian] = intervallapgen(m,p,1-p,0); %m,p,q,cutoff
 % [~,eigvals,V] = fullspectra(laplacian);
 % test = zeros(length(eigvals),1);
 % for i=1:length(smalleigvals)
-%     test(4*i-3:4*i) = intlambdamap(smalleigvals(i),p,2);
+%     test(4*i-3:4*i) = intlambdamap(smalleigvals(i),p,m);
 % end
-% %test = sort(test);
+% test = sort(test);
 % test = [test eigvals'];
 
 
