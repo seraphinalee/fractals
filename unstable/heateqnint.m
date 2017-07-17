@@ -10,7 +10,12 @@ V = [zeros(1,length(V));V;zeros(1,length(V))];
 for i=1:length(eigvals)
     V(:,i) = V(:,i)./sqrt(dot(V(:,i).^2,measure'));
 end
-f = sin(linspace(0,2*pi,length(xcors)));
+
+offset = round(length(xcors)/2);
+num = 40;
+f = [zeros(1,offset) ones(1,num) zeros(1,length(xcors)-offset-num)];
+
+
 ts = linspace(0.0000001,0.1,50);
 
 

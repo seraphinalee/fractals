@@ -10,7 +10,7 @@ eigvals = eigvals';
 unique_eigvals = uniquetol(eigvals,0.01/max(eigvals));
 unique_eigvals = [unique_eigvals ;zeros(1,length(unique_eigvals))];
 for i =1:length(unique_eigvals)
-    unique_eigvals(2,i) = sum(abs(eigvals-unique_eigvals(1,i))<0.01);
+    unique_eigvals(2,i) = sum(abs(eigvals-unique_eigvals(1,i))<0.001);
 end
 
 V_out = zeros(length(V));
