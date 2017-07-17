@@ -1,16 +1,50 @@
-p=0.5;
-q=1-p;
-cutoff = 0;
-m=5;
+r = 1;
+[mu0, mu1, r0, r1] = params(r);
+m = 1;
+
+[laplacian,plotting_points,points,cells] = laplaciangen(m,mu0, r0, r1,0);
+[unique_eigvals, eigvals, V] = fullspectra(laplacian);
+
+index = 1;
+for i =1:length(unique_eigvals)
+    A = V(:,index:index-1+unique_eigvals(2,i));
+    [
+m; n
+] =
+a?
+(
+A
+);
+Q
+=
+=J/=
+(
+m; n
+);
+R
+=
+?J/a
+(
+n; n
+);
+CLI G7.C-C5,?.!MK,g47ST.M<IJ2K2L.<C
+^
+
+FUT
+n/ ¡D¢n£W¥¤§¦
 
 
-[xcors,laplacian,measure] = intervallapgen(m,p,q,0); %m,p,q,cutoff
-[~,eigvals,V] = fullspectra(laplacian);
+
+
+
+
+
+
 V = [zeros(1,length(V));V;zeros(1,length(V))];
 for i=1:length(eigvals)
     V(:,i) = V(:,i)./sqrt(dot(V(:,i).^2,measure'));
 end
-f = sin(linspace(0,2*pi,length(xcors)));
+f = linspace(0,2*pi,length(xcors));
 ts = linspace(0.0000001,0.1,50);
 
 

@@ -40,14 +40,14 @@ r = 1;
 %    clf
 %end
 
-for i =1:20
+%for i =1:20
 %     subplot(1,2,1)
 %     gasketgraph(smallplotting_points,smallV(:,smallindices(search)))
 %     subplot(1,2,2)
-      gasketgraph(plotting_points,V(:,i));
-     pause()
-     clf
-end
+%      gasketgraph(plotting_points,V(:,i));
+%     pause()
+%     clf
+%end
 
 %x = linspace(0.001,0.60,10)
 %for i = 1:10
