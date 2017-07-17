@@ -1,4 +1,4 @@
-function [xcors, laplacian ] = intervallapgen(m,p,q,cutoff )
+function [xcors, laplacian,pointmass ] = intervallapgen(m,p,q,cutoff )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 measure = [p/2 (1-p)/2 (1-p)/2 p/2]; %base measure split
@@ -26,9 +26,11 @@ for i = 2:m
     resistance = newres;
     xcors = newxcors;
 end
+pointmass = zeros(1,length(xcors)-2);
 laplacian = zeros(length(xcors)-2);
 for i = 1:length(xcors)-2
     avgmeasure = (measure(i)+measure(i+1))/2;
+    pointmass(i) = avgmeasure;
     laplacian(i,i) = (1/avgmeasure)*(1/resistance(i)+1/resistance(i+1));
 end
 %... and for the right neighbors
@@ -41,6 +43,7 @@ for i = 2:length(xcors)-2
     avgmeasure = (measure(i)+measure(i+1))/2;
     laplacian(i,i-1) = (1/avgmeasure)*(-1/resistance(i));
 end
+pointmass = [measure(1) pointmass measure(end)];
 
 
 end

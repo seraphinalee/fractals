@@ -1,4 +1,4 @@
-function [ laplacian,plotting_points,points ] = dirichletgen(m,mu0,r0,r1,cutoff)
+function [ laplacian,plotting_points,points,cells ] = neumanngen(m,mu0,r0,r1,cutoff)
 %UNTITLED3 Summary of this function goes here
 %   Detailed explanation goes here
 mu1 = 1/6-mu0/2;
@@ -72,7 +72,16 @@ for i = 1:length(cells)
                     try
                         neighbordata = points(reduce(primary([mod(q+offset,3)*ones(buffer,1);address])));
                         laplacian(injective_address,injective_address) = laplacian(injective_address,injective_address) + pointmass/resistance;
-                        laplacian(injective_address,neighbordata(2)) = - pointmass/resistance;
+                        laplacian(injective_address,neighbordata(2)) = laplacian(injective_address,neighbordata(2)) - pointmass/resistance;
+                    catch
+                        if offset==1
+                            neighbordata = points(reduce(primary([mod(q+2,3)*ones(buffer,1);address])));
+                        else
+                            neighbordata = points(reduce(primary([mod(q+1,3)*ones(buffer,1);address])));
+                        end
+                        laplacian(injective_address,injective_address) = laplacian(injective_address,injective_address) + 1/2*pointmass/resistance;
+                        laplacian(injective_address,neighbordata(2)) = laplacian(injective_address,neighbordata(2)) - 1/2*pointmass/resistance;
+                       
                     end
                 end
             end

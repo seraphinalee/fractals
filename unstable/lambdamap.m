@@ -19,6 +19,7 @@ p5 = 1+3*r+3*r^2+r^3;
 unscaled = roots([p5 p4 p3 p2 p1 p0])';
 len = length(unscaled);
 for i=1:length(unscaled)
+    % 
    if sum(abs(unscaled(len-i+1)-real([6 5 2*(2+r)/(1+r) forb1 forb2 forb3 forb4 forb5]))<10^-4)>0
        unscaled = [unscaled(1:len-i) unscaled(len-i+2:end)];
    end
