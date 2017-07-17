@@ -4,6 +4,7 @@ function [  ] = ratioanalysis( eigvals,lowbound,upbound,res)
 eigvals = repmat(eigvals,length(eigvals),1);
 eigvals = eigvals./eigvals';
 eigvals = sort(reshape(eigvals,[],1));
+eigvals = eigvals';
 
 mindex1 = 1;
 maxdex1 = length(eigvals);
@@ -28,13 +29,13 @@ while maxdex2 > mindex2 + 1
         mindex2 = temp;
     end
 end
-eigvals = eigvals(mindex1:maxdex2);
-eigvals = unique(eigvals')';
+eigvals = eigvals(mindex1:mindex2);
+eigvals = uniquetol(eigvals,res);
 
 
 
 
-plot([0;1],[eigvals';eigvals'])
+plot([0;1],[eigvals',eigvals'])
 
 
 

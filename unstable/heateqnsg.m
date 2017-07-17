@@ -1,15 +1,16 @@
-r = 0.99;
+r = 0.1;
 [mu0, mu1, r0, r1] = params(r);
 m = 3;
 
 [laplacian,plotting_points,points,cells] = laplaciangen(m,mu0, r0, r1,0);
 [unique_eigvals, eigvals, V] = fullspectra(laplacian);
+V = real(V);
 
-
-offset = 500;
+offset = 19;
+offset = offset-1;
 num = 1;
-f = [zeros(1,offset) 1000*ones(1,num) zeros(1,length(V)-offset-num)];
-
+val = 100;
+f = [zeros(1,offset) val*ones(1,num) zeros(1,length(V)-offset-num)];
 
 
 measure = zeros(1,length(points)-1);
@@ -18,7 +19,6 @@ for i=2:length(points)
     point = points{i};
     measure(1,point(2)) = point(1);
 end
-
 
 
 index = 1;
@@ -51,7 +51,7 @@ end
 
 
 
-ts = linspace(10^-5,10^-3,90);
+ts = linspace(10^-4,10^-3,90);
 
 
 
@@ -64,17 +64,18 @@ evals = repmat(exp(-evals.*repmat(ts',1,1,length(eigvals))),1,length(plotting_po
 u = efuncs.*evals;
 u = sum(u,3);
 
-
+% 
 % for i=1:length(ts)
 %     gasketgraph(plotting_points,u(i,:)');
 %     hold on
 % end
 
+
 F(length(ts)) = struct('cdata',[],'colormap',[]);
 for j = 1:length(ts)
-    gasketgraph(plotting_points,u(j,:)');
-    zlim([0 70])
-    drawnow
-    F(j) = getframe;
+   gasketgraph(plotting_points,u(j,:)');
+   zlim([-1 10])
+   drawnow
+   F(j) = getframe;
 end
 movie(F,10)
