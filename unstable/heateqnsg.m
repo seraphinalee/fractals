@@ -1,42 +1,70 @@
-r = 1;
+r = 0.5;
 [mu0, mu1, r0, r1] = params(r);
-m = 1;
+m = 3;
 
 [laplacian,plotting_points,points,cells] = laplaciangen(m,mu0, r0, r1,0);
 [unique_eigvals, eigvals, V] = fullspectra(laplacian);
 
-index = 1;
-for i =1:length(unique_eigvals)
-    A = V(:,index:index-1+unique_eigvals(2,i));
+f = V(:,10)'+V(:,12)';
 
 
 
-
-
-
-
-
-
-V = [zeros(1,length(V));V;zeros(1,length(V))];
-for i=1:length(eigvals)
-    V(:,i) = V(:,i)./sqrt(dot(V(:,i).^2,measure'));
+measure = zeros(1,length(points)-1);
+points = points.values;
+for i=2:length(points)
+    point = points{i};
+    measure(1,point(2)) = point(1);
 end
-f = linspace(0,2*pi,length(xcors));
-ts = linspace(0.0000001,0.1,50);
+
+
+
+index = 1;
+for k =1:length(unique_eigvals)
+    A = V(:,index:index-1+unique_eigvals(2,k));
+    [m,n] = size(A);
+    Q = zeros(m,n);
+    R = zeros(n,n);
+    for j=1:n
+        v=A(:,j);
+        for i=1:j-1
+            R(i,j)=Q(:,i)'*v;
+            v = v-R(i,j)*Q(:,i);
+        end
+        R(j,j)=sqrt(dot(v.^2,measure'));
+        Q(:,j)=v/R(j,j);
+    end
+    V(:,index:index-1+unique_eigvals(2,k)) = Q;
+    index = index+unique_eigvals(2,k);
+end
+
+
+
+
+
+
+
+
+
+
+
+
+ts = linspace(0.0000001,0.01,30);
 
 
 
 efuncs = permute(V,[3,1,2]);
-efuncref = repmat(permute(dot(V,repmat(f'.*measure',1,length(eigvals))),[1 3 2]),1,length(xcors),1);
+efuncref = repmat(permute(dot(V,repmat(f'.*measure',1,length(eigvals))),[1 3 2]),1,length(plotting_points),1);
 efuncs = efuncs.*efuncref;
 efuncs = repmat(efuncs,length(ts),1,1);
 evals = repmat(permute(eigvals,[1 3 2]),length(ts),1,1);
-evals = repmat(exp(-evals.*repmat(ts',1,1,length(eigvals))),1,length(xcors),1);
+evals = repmat(exp(-evals.*repmat(ts',1,1,length(eigvals))),1,length(plotting_points),1);
 u = efuncs.*evals;
 u = sum(u,3);
 
 
 
-
-surf(xcors,ts,squeeze(u),'LineStyle','none')
+for i=1:length(ts)
+    gasketgraph(plotting_points,u(i,:)');
+    hold on
+end
 
