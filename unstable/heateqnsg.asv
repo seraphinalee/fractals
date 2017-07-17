@@ -23,6 +23,7 @@ end
 
 index = 1;
 for k =1:length(unique_eigvals)
+    disp([index,index-1+unique_eigvals(2,k)])
     A = V(:,index:index-1+unique_eigvals(2,k));
     [m,n] = size(A);
     Q = zeros(m,n);
@@ -30,7 +31,7 @@ for k =1:length(unique_eigvals)
     for j=1:n
         v=A(:,j);
         for i=1:j-1
-            R(i,j)=dot(Q(:,i).*v,measure);
+            R(i,j)=dot(Q(:,i)'.*v,measure);
             v = v-R(i,j)*Q(:,i);
         end
         R(j,j)=sqrt(dot(v.^2,measure'));
@@ -73,7 +74,7 @@ u = sum(u,3);
 F(length(ts)) = struct('cdata',[],'colormap',[]);
 for j = 1:length(ts)
     gasketgraph(plotting_points,u(j,:)');
-    zlim([0 70])
+    zlim([-10 70])
     drawnow
     F(j) = getframe;
 end
