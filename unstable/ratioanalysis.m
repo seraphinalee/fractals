@@ -34,7 +34,7 @@ eigvals = uniquetol(eigvals,res);
 
 
 
-
+disp(eigvals)
 plot([0;1],[eigvals',eigvals'])
 
 

@@ -1,4 +1,4 @@
-r = 0.1;
+r = 2;
 [mu0, mu1, r0, r1] = params(r);
 m = 3;
 
@@ -9,7 +9,7 @@ V = real(V);
 offset = 19;
 offset = offset-1;
 num = 1;
-val = 100;
+val = 2000;
 f = [zeros(1,offset) val*ones(1,num) zeros(1,length(V)-offset-num)];
 
 
@@ -43,15 +43,7 @@ end
 
 
 
-
-
-
-
-
-
-
-
-ts = linspace(10^-4,10^-3,90);
+ts = linspace(10^-4,10^0,90);
 
 
 
@@ -60,7 +52,10 @@ efuncref = repmat(permute(dot(V,repmat(f'.*measure',1,length(eigvals))),[1 3 2])
 efuncs = efuncs.*efuncref;
 efuncs = repmat(efuncs,length(ts),1,1);
 evals = repmat(permute(eigvals,[1 3 2]),length(ts),1,1);
-evals = repmat(exp(-evals.*repmat(ts',1,1,length(eigvals))),1,length(plotting_points),1);
+%activate this line for heat eqn
+%evals = repmat(exp(-evals.*repmat(ts',1,1,length(eigvals))),1,length(plotting_points),1);
+%and this one for wave eqn
+evals = repmat(sin(sqrt(evals).*repmat(ts',1,1,length(eigvals)))./sqrt(evals),1,length(plotting_points),1);
 u = efuncs.*evals;
 u = sum(u,3);
 
