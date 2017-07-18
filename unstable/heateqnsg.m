@@ -1,4 +1,4 @@
-r = 2;
+r = 1;
 [mu0, mu1, r0, r1] = params(r);
 m = 3;
 
@@ -43,7 +43,7 @@ end
 
 
 
-ts = linspace(10^-4,10^0,90);
+ts = linspace(10^-4,5*10^-1,90);
 
 
 

@@ -1,4 +1,4 @@
-r = 10^-5;
+r = 10^6;
 [mu0, mu1, r0, r1] = params(r);
 %search = 4;
 
@@ -34,11 +34,11 @@ r = 10^-5;
 %gasketgraph(plotting_points,V(:,40));
 
 %subplot(1,2,2)
-%for i =1:30
-%    gasketgraph(plotting_points,V(:,i));
-%    pause()
-%    clf
-%end
+for i =1:30
+    gasketgraph(plotting_points,V(:,i));
+    pause()
+    clf
+end
 
 %for i =1:20
 %     subplot(1,2,1)

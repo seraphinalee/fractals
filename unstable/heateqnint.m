@@ -1,4 +1,4 @@
-p=0.4999999999;
+p=0.5;
 q=1-p;
 cutoff = 0;
 m=5;
@@ -13,7 +13,7 @@ end
 
 %offset = round(length(xcors)/2);
 offset = 1;
-num = 1;
+num = 100;
 val = 10;
 f = [zeros(1,offset) val*ones(1,num) zeros(1,length(xcors)-offset-num)];
 
