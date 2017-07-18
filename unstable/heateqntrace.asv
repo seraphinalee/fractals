@@ -1,0 +1,14 @@
+r = 1;
+[mu0, mu1, r0, r1] = params(r);
+m = 3;
+
+[laplacian,plotting_points,points,cells] = laplaciangen(m,mu0, r0, r1,0);
+[unique_eigvals, eigvals, V] = fullspectra(laplacian);
+
+ts = repmat(linspace(10^-4,10^-3,90)',1,length(eigvals));
+eigvals = repmat(eigvals,length(ts),1);
+
+
+
+
+
