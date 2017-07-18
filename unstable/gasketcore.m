@@ -1,6 +1,7 @@
 r = 10^6;
 [mu0, mu1, r0, r1] = params(r);
 %search = 4;
+m=3;
 
 %[smalllaplacian,smallplotting_points,smallpoints] = laplaciangen(2,mu0, r0, r1,0);
 %[laplacian,plotting_points,points] = neumann(4,mu0, r0, r1,0);

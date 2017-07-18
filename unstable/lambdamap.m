@@ -23,13 +23,11 @@ p4 = -12-38*r-40*r^2-14*r^3;
 p5 = 1+3*r+3*r^2+r^3;
 unscaled = roots([p5 p4 p3 p2 p1 p0])';
 f = @(x) p0+p1*x+p2*x^2+p3*x^3+p4*x^4+p5*x^5;
-disp(fzero(f,1))
 unscaled = ([unscaled fzero(f,0) fzero(f,1) fzero(f,2) fzero(f,3) fzero(f,4) fzero(f,5) fzero(f,6)]);
 output = unscaled/(r0*mu0)^m*3/2;
-
 len = length(output);
-for i=1:length(output)
-   if sum(abs(output(len-i+1)-real(3/2/(mu0*r0)^m*[6 5 2*(2+r)/(1+r) forb1 forb2 forb3 forb4 forb5]))<10^-4)>0
+for i=1:len
+   if sum(abs(output(len-i+1)-real(3/2/(mu0*r0)^m*[6 5 2*(2+r)/(1+r) forb1 forb2 forb3 forb4 forb5]))<10^-2)>0
        output = [output(1:len-i) output(len-i+2:end)];
    end
 end
