@@ -1,15 +1,15 @@
-r = 1;
+r = 0.64;
 [mu0, mu1, r0, r1] = params(r);
 m = 3;
 
-[laplacian,plotting_points,points,cells] = laplaciangen(m,mu0, r0, r1,0);
+[laplacian,plotting_points,points,cells] = neumanngen(m,mu0, r0, r1,0);
 [unique_eigvals, eigvals, V] = fullspectra(laplacian);
 V = real(V);
 
 offset = 19;
 offset = offset-1;
 num = 1;
-val = 2000;
+val = 1000;
 f = [zeros(1,offset) val*ones(1,num) zeros(1,length(V)-offset-num)];
 
 
@@ -43,7 +43,7 @@ end
 
 
 
-ts = linspace(10^-4,5*10^-1,90);
+ts = linspace(10^-3,10^-2,100);
 
 
 
@@ -53,9 +53,9 @@ efuncs = efuncs.*efuncref;
 efuncs = repmat(efuncs,length(ts),1,1);
 evals = repmat(permute(eigvals,[1 3 2]),length(ts),1,1);
 %activate this line for heat eqn
-%evals = repmat(exp(-evals.*repmat(ts',1,1,length(eigvals))),1,length(plotting_points),1);
+evals = repmat(exp(-evals.*repmat(ts',1,1,length(eigvals))),1,length(plotting_points),1);
 %and this one for wave eqn
-evals = repmat(sin(sqrt(evals).*repmat(ts',1,1,length(eigvals)))./sqrt(evals),1,length(plotting_points),1);
+%evals = repmat(sin(sqrt(evals).*repmat(ts',1,1,length(eigvals)))./sqrt(evals),1,length(plotting_points),1);
 u = efuncs.*evals;
 u = sum(u,3);
 
@@ -66,11 +66,16 @@ u = sum(u,3);
 % end
 
 
-F(length(ts)) = struct('cdata',[],'colormap',[]);
+v = VideoWriter('sgmaxheat.avi');
+open(v);
+
+%F(length(ts)) = struct('cdata',[],'colormap',[]);
 for j = 1:length(ts)
    gasketgraph(plotting_points,u(j,:)');
    zlim([-1 10])
-   drawnow
-   F(j) = getframe;
+   %F(j) = getframe;
+   frame = getframe(gcf);
+   writeVideo(v,frame);
 end
-movie(F,10)
+%movie(F,10)
+close(v);

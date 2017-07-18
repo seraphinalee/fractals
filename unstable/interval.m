@@ -1,13 +1,15 @@
-p=1-10^-5;
+p=0.3;
 q=1-p;
-cutoff = 0;
+cutoff = 0.44;
 m=5;
 
 
 
-[xcors,laplacian] = intervallapgen(m,p,1-p,0); %m,p,q,cutoff
-[~,eigvals,V] = fullspectra(laplacian);
-ratioanalysis(eigvals,0.1,5,10^-3)
+[xcors,laplacian] = intervallapgen(m,p,1-p,cutoff); %m,p,q,cutoff
+[x,eigvals,V] = fullspectra(laplacian);
+
+
+%ratioanalysis(eigvals,0.01,5,10^-3)
 %otherlaplacian = laplacian;
 %p=1-p;
 %[xcors,laplacian] = intervallapgen(m,p,1-p,0); %m,p,q,cutoff

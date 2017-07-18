@@ -1,4 +1,4 @@
-r = 10^6;
+r = 1;
 [mu0, mu1, r0, r1] = params(r);
 %search = 4;
 m=3;
