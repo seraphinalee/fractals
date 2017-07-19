@@ -1,4 +1,4 @@
-function [] = zeroplotter(xcors,yvals)
+function [ourzeros] = zeroplotter(xcors,yvals)
 %Plots a graph with zeros
 
 ourzeros = zeros(1,length(yvals));

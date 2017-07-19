@@ -1,5 +1,5 @@
-r = 1;
-m=1;
+r = 10;
+m=2;
 [mu0, mu1, r0, r1] = params(r);
 %search = 4;
 
