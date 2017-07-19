@@ -1,31 +1,34 @@
-p=0.7;
+p=0.3;
 q=1-p;
-cutoff = 0;
-m=3;
+cutoff = 0.44;
+m=5;
 
 
 
-[xcors,laplacian] = intervallapgen(m,p,1-p,0); %m,p,q,cutoff
-[~,eigvals,V] = fullspectra(laplacian);
-otherlaplacian = laplacian;
-p=1-p;
-[xcors,laplacian] = intervallapgen(m,p,1-p,0); %m,p,q,cutoff
-[~,othereigvals,otherV] = fullspectra(laplacian);
-V = [zeros(1, length(V));V;zeros(1,length(V))];
-otherV = [zeros(1, length(otherV));otherV;zeros(1,length(otherV))];
-for i=1:length(V)
+[xcors,laplacian] = intervallapgen(m,p,1-p,cutoff); %m,p,q,cutoff
+[x,eigvals,V] = fullspectra(laplacian);
+
+
+%ratioanalysis(eigvals,0.01,5,10^-3)
+%otherlaplacian = laplacian;
+%p=1-p;
+%[xcors,laplacian] = intervallapgen(m,p,1-p,0); %m,p,q,cutoff
+%[~,othereigvals,otherV] = fullspectra(laplacian);
+%V = [zeros(1, length(V));V;zeros(1,length(V))];
+%otherV = [zeros(1, length(otherV));otherV;zeros(1,length(otherV))];
+%for i=1:length(V)
     %sin(2*pi*xcors)' -sin(2*pi*xcors)' 
     %[0; resistance(1:end-1)'/max(resistance); 0]
     %subplot(3,1,1)
-    plot(xcors,[V(:,i) otherV(:,i)]) %[0;transform(-otherV(:,i)')';0]])
+%    plot(xcors,[V(:,i) otherV(:,i)]) %[0;transform(-otherV(:,i)')';0]])
     %subplot(3,1,2)
     %bar(xcors(2:end),resistance(1:end)')
     %subplot(3,1,3)
     %bar(xcors(2:end),transform(measure(1:end))')
-    xlabel(strcat(num2str(eigvals(i)),'____',num2str(othereigvals(i))))
-    pause()
-    clf
-end
+%    xlabel(strcat(num2str(eigvals(i)),'____',num2str(othereigvals(i))))
+%    pause()
+%    clf
+%end
 
 
 

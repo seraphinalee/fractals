@@ -1,18 +1,29 @@
+<<<<<<< HEAD
 r = 1;
 m=1;
+=======
+r = 10;
+m=2;
+>>>>>>> 71de62cc679cf7c4d10898df5b7e9f41f02b0039
 [mu0, mu1, r0, r1] = params(r);
 %search = 4;
 
-[smalllaplacian,plotting_points,points] = laplaciangen(m,mu0, r0, r1,0);
+[smalllaplacian,smallplotting_points,smallpoints] = laplaciangen(m,mu0, r0, r1,0);
 [unique_eigvals, smalleigvals, V] = fullspectra(smalllaplacian);
-m=2;
+m=m+1;
 [laplacian,plotting_points,points] = laplaciangen(m,mu0, r0, r1,0);
 [unique_eigvals, eigvals, V] = fullspectra(laplacian);
 test = [];
 for i=1:length(smalleigvals)
-    test= [test lambdamap(smalleigvals(i),r,2)];
+%for i=1:1
+    test= [test lambdamap(abs(smalleigvals(i)),r,m)];
 end
+<<<<<<< HEAD
 test = sort(test);
+=======
+%test = sort(test);
+
+>>>>>>> 71de62cc679cf7c4d10898df5b7e9f41f02b0039
 test = [[sort(test) zeros(1,length(eigvals)-length(test))];eigvals]';
 
 
