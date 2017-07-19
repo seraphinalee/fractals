@@ -10,11 +10,11 @@ V = [zeros(1,length(V)); V; zeros(1,length(V))];
 
 
 
-for i=1:length(V)   
-    zeroplotter(xcors,V(:,i));
-    plot(xcors,sin(pi*i*xcors));
-    pause()
-    clf
+for i=1:length(V)
+    
+zeroplotter(xcors,V(:,2));
+plot(xcors,sin(pi*xcors));
+clf
 end
 
 

@@ -1,4 +1,4 @@
-r = 10;
+r = 1.1;
 m=2;
 [mu0, mu1, r0, r1] = params(r);
 %search = 4;
@@ -15,7 +15,8 @@ for i=1:length(smalleigvals)
 end
 %test = sort(test);
 
-test = [[sort(test) zeros(1,length(eigvals)-length(test))];eigvals]';
+test = align([[sort(test) zeros(1,length(eigvals)-length(test))];eigvals]');
+test = [test test(:,2)*(mu0*r0)^m/3*2];
 
 
 
