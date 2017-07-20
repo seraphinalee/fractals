@@ -13,10 +13,10 @@ for i=1:length(yvals)-1
 end
 ourzeros = ourzeros(1:count);
 
-plot(xcors,[yvals zeros(length(yvals),1)])
-hold on
-plot(ourzeros,zeros(length(ourzeros),1),'ro')
-ylabel(num2str(count))            
+% plot(xcors,[yvals zeros(length(yvals),1)])
+% hold on
+% plot(ourzeros,zeros(length(ourzeros),1),'ro')
+% ylabel(num2str(count))            
 
 
 
