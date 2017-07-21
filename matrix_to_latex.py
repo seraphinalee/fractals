@@ -5,12 +5,12 @@ import scipy.io as sio
 
 #swap these three out with the necessary adjustments
 #ideally all running in the same folder but you can adjust if needed
-myfilename = 'm=1.mat'
-outfilename = 'm=1.tex'
-matrixname = 'eigfnc'
+myfilename = 'mymat.mat'
+outfilename = 'mylatex.tex'
+matrixname = 'unique_eigvals'
 
 output = open(outfilename,'w')
-output.write('\\begin{tabular}{c |c} \nEigenvalues(m= p= q= ) & Eigenvalues(m= p= q=) \\\ \n\\hline\\hline\n')
+output.write('\\begin{tabular}{c |c} \nEigenvalue & Multiplicity \\\ \n\\hline\\hline\n')
 matrix = sio.loadmat(myfilename)
 matrix = matrix[matrixname]
 for i in range(0,len(matrix)):

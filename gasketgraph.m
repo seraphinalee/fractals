@@ -1,8 +1,9 @@
-function [X Y Z] = gasketgraph( gasketdata )
+function [] = gasketgraph( plotting_points,z_vals )
 %takes a row vector of column vectors
 %each column vector is a standard address with a z-value appended on the
 %end
-
+dims = size(plotting_points);
+gasketdata = [plotting_points; z_vals'];
 %declaring empty output
 X = zeros(length(gasketdata),1);
 Y = zeros(length(gasketdata),1);
@@ -39,7 +40,7 @@ for i = 1:length(gasketdata)
     X(i,1) = cartesian(1);
     Y(i,1) = cartesian(2);
     Z(i,1) = gasketdata(end,i);
-    plot3(X,Y,Z,'.')
 end
+plot3(X,Y,Z,'.')
 end
 

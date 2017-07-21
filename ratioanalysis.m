@@ -1,9 +1,10 @@
-function [  ] = ratioanalysis( eigvals,lowbound,upbound )
+function [  ] = ratioanalysis( eigvals,lowbound,upbound,res)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 eigvals = repmat(eigvals,length(eigvals),1);
 eigvals = eigvals./eigvals';
 eigvals = sort(reshape(eigvals,[],1));
+eigvals = eigvals';
 
 mindex1 = 1;
 maxdex1 = length(eigvals);
@@ -28,11 +29,13 @@ while maxdex2 > mindex2 + 1
         mindex2 = temp;
     end
 end
-eigvals = eigvals(mindex1:maxdex2);
-f = @(x) countingfunction(eigvals,x);
-plotpoints = arrayfun(f,eigvals);
-plot(eigvals,plotpoints)
+eigvals = eigvals(mindex1:mindex2);
+eigvals = uniquetol(eigvals,res);
 
+
+
+disp(eigvals)
+plot([0;1],[eigvals',eigvals'])
 
 
 

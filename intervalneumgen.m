@@ -1,4 +1,4 @@
-function [xcors, laplacian ] = intervalneumgen( m,p,q,cutoff )
+function [xcors, laplacian,pointmass] = intervalneumgen( m,p,q,cutoff )
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 measure = [p/2 (1-p)/2 (1-p)/2 p/2]; %base measure split
@@ -12,10 +12,10 @@ for i = 2:m
     newres  = [];
     newxcors = [xcors(1)];
     for j =1:length(measure)
-        if measure(j)>=cutoff^(i)
+        if measure(j)>=cutoff^i
             newxcors = [newxcors xcors(j)+(xcors(j+1)-xcors(j)).*[1/4 1/2 3/4 1]];
             newmeas = [newmeas measure(j)*[p/2 (1-p)/2 (1-p)/2 p/2]];
-            newres = [newres resistance(j)*[q/2 (1-q)/2 (1-q)/2 q/2]];
+            newres = [newres resistance(j)*[p/2 (1-p)/2 (1-p)/2 p/2]];
         else
             newmeas = [newmeas measure(j)];
             newres = [newres resistance(j)];
@@ -28,14 +28,18 @@ for i = 2:m
 end
 laplacian = zeros(length(xcors)-2);
 
+pointmass = zeros(1,length(xcors)-2);
 avgmeasure = (measure(1)+measure(2))/2;
+pointmass(1) = avgmeasure;
 laplacian(1,1) = (1/avgmeasure)*(1/resistance(2));
-avgmeasure = (measure(4^m-1)+measure(4^m))/2;
-laplacian(4^m-1,4^m-1) = (1/avgmeasure)*(1/resistance(4^m-1));
+avgmeasure = (measure(end-1)+measure(end))/2;
+pointmass(end) = avgmeasure;
+laplacian(end,end) = (1/avgmeasure)*(1/resistance(end));
 
 for i = 2:length(xcors)-3
     avgmeasure = (measure(i)+measure(i+1))/2;
     laplacian(i,i) = (1/avgmeasure)*(1/resistance(i)+1/resistance(i+1));
+    pointmass(i) = avgmeasure;
 end
 %... and for the right neighbors
 for i = 1:length(xcors)-3
@@ -47,6 +51,8 @@ for i = 2:length(xcors)-2
     avgmeasure = (measure(i)+measure(i+1))/2;
     laplacian(i,i-1) = (1/avgmeasure)*(-1/resistance(i));
 end
+
+pointmass = [measure(1) pointmass measure(end)];
 
 end
 

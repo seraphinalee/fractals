@@ -1,4 +1,4 @@
-m=4;
+m=6;
 boundary = [[0;0] [1;1] [2;2]];
 gasket_points = [[0;1] [1;2] [2;0]];
 for i = 1:m-1
@@ -15,7 +15,7 @@ mu0vals = linspace(0.01,0.9/3,20);  %fill in the values you want to test here, b
 %rvals = [0.1 0.5 1 2 5 10]; %fill in the values you want to test here, between 0 and infinity
 %rvals = ones(1,length(mu0vals))./(6*mu0vals)-1/2;
 rvals = ones(1,length(mu0vals));
-data = zeros(length(mu0vals),1/2*(3^(m+1)-3));
+data = zeros(length(mu0vals),1092);
 
 for mu0dex = linspace(1,length(rvals),length(rvals))%r vals, a list of indices (1 to n)
     r = rvals(mu0dex);
@@ -63,8 +63,8 @@ for mu0dex = linspace(1,length(rvals),length(rvals))%r vals, a list of indices (
     %    unique_eigvals(2,i) = sum(abs(eigvals-unique_eigvals(1,i))<0.01);
     %end
     %unique_eigvals = unique_eigvals';
-    %data(mu0dex,:) = log(eigvals);
+    data(mu0dex,:) = log(eigvals);
 
 end
-%plot(mu0vals,data)
+plot(mu0vals,data)
 

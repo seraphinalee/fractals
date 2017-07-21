@@ -1,8 +1,6 @@
 function ordered = peano( V, m )
 %V: running order of points
 %m: how many more iterations we need to do
-%ordered returns a list of points in order of how the peano curve goes
-%through them
 
 if m==0
     %convert all addresses back to primary
