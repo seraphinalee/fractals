@@ -37,8 +37,8 @@ disp(size(func))
 disp(size(resistance))
 output = (func(2:end)-func(1:end-1))./resistance(2:end-1)./pointmass(1:end-1);
 output = output';
-output = output/(max(abs(output)));
-output = output*output(5,1)/abs(output(5,1));
+%output = output/(max(abs(output)));
+%output = output*output(5,1)/abs(output(5,1));
 
 
 

@@ -1,5 +1,5 @@
 
-p=0.3;
+p=0.5;
 q=1-p;
 m=5;
 cutoff = 0;
@@ -13,9 +13,7 @@ test = deriv(cot(pi*xcors(2:end-1))',m,p,q,cutoff);
 %test1 = deriv(cos(pi*xcors(2:end-1))',m,p,q,cutoff);
 %test = deriv([test;test(end)],m,p,q,cutoff);
 
-ref = [csc(pi*xcors(2:end-2)').^2];
-test = test*ref(100,:)/test(100,:);
 %plot(xcors(2:end-1),[dirV(:,1) neumV(1:end,2)])
-temp = [-test ref];
-temp = temp(100:end-100,:);
+temp = [-test -csc(pi*xcors(2:end-2)').^2];
+temp = temp(10:end-10,:);
 plot(temp)
