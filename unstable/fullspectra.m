@@ -9,7 +9,7 @@ laplacian = full(laplacian);
 
 [eigvals,indices] = sort(real(diag(D)));
 eigvals = eigvals';
-unique_eigvals = customunique(eigvals,10^-5);
+unique_eigvals = customunique(eigvals,10^-8);
 
 
 V_out = zeros(length(V));
