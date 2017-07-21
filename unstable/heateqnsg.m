@@ -1,4 +1,4 @@
-r = 0.64;
+r = 1;
 [mu0, mu1, r0, r1] = params(r);
 m = 3;
 
@@ -66,16 +66,16 @@ u = sum(u,3);
 % end
 
 
-v = VideoWriter('sgmaxheat.avi');
-open(v);
+%v = VideoWriter('sgmaxheat.avi');
+%open(v);
 
-%F(length(ts)) = struct('cdata',[],'colormap',[]);
+F(length(ts)) = struct('cdata',[],'colormap',[]);
 for j = 1:length(ts)
    gasketgraph(plotting_points,u(j,:)');
    zlim([-1 10])
-   %F(j) = getframe;
-   frame = getframe(gcf);
-   writeVideo(v,frame);
+   F(j) = getframe;
+   %frame = getframe(gcf);
+   %writeVideo(v,frame);
 end
-%movie(F,10)
-close(v);
+movie(F,10)
+%close(v);

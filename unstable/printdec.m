@@ -1,10 +1,7 @@
-<<<<<<< HEAD
+
 r = 1;
 m=1;
-=======
-r = 10;
-m=2;
->>>>>>> 71de62cc679cf7c4d10898df5b7e9f41f02b0039
+
 [mu0, mu1, r0, r1] = params(r);
 %search = 4;
 
@@ -18,13 +15,13 @@ for i=1:length(smalleigvals)
 %for i=1:1
     test= [test lambdamap(abs(smalleigvals(i)),r,m)];
 end
-<<<<<<< HEAD
-test = sort(test);
-=======
+
 %test = sort(test);
 
->>>>>>> 71de62cc679cf7c4d10898df5b7e9f41f02b0039
-test = [[sort(test) zeros(1,length(eigvals)-length(test))];eigvals]';
+
+test = align([[sort(test) zeros(1,length(eigvals)-length(test))];eigvals]');
+test = [test test(:,2)*(mu0*r0)^m/3*2];
+
 
 
 % a =repmat(eigvals,120,1)
