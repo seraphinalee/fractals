@@ -1,7 +1,7 @@
 p=0.3;
 q=1-p;
-cutoff = 0.44;
-m=5;
+cutoff = 0;
+m=6;
 
 
 
@@ -46,12 +46,12 @@ m=5;
 %plot(log(eigvals),zeros(length(eigvals),1),'o')
 %xlabel("m=5 p=0.9 q=0.1")
 
-% % Weyl Plot
-% f = @(x) countingfunction(eigvals,x);
-% plotpoints = arrayfun(f,eigvals);
-% p = polyfit(log(eigvals),log(plotpoints),1);
-% alpha = p(1);
-% plot(log(eigvals'),log(plotpoints'./(eigvals').^alpha))
+% Weyl Plot
+f = @(x) countingfunction(eigvals,x);
+plotpoints = arrayfun(f,eigvals);
+p = polyfit(log(eigvals),log(plotpoints),1);
+alpha = p(1);
+plot(log(eigvals'),log(plotpoints'./(eigvals').^alpha))
 % xlabel("m=5 p=0.1 q=0.9")
 
 %plot(linspace(0,1,4^m)', log([measure'./max(measure) resistance'./max(resistance)]))

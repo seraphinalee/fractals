@@ -76,19 +76,17 @@ end
  
 % plot(linspace(0,1,4^m)', log([measure'./max(measure) resistance'./max(resistance)]))
 
-% syms y(x)
-% Dy = diff(y);
-% ode = diff(y,x,2) == -eigvals(1) *y;
-% cond1 = y(0) == 0;
-% cond2 = y(1) == 0;
-% conds = [cond1 cond2];
-% ySol(x) = dsolve(ode, conds);
-% ySol = simplify(ySol)
+syms y(x)
+Dy = diff(y);
+ode = diff(y,x,2) == -eigvals(1)*y;
+cond1 = y(0) == 0;
+cond2 = y(1) == 0;
+conds = [cond1 cond2];
+ySol(x) = dsolve(ode, conds);
+ySol = simplify(ySol)
 
-ode = @diff(x,y,2) + eigvals(1)*y;
-options2 = odeset(options1,'NonNegative',1);
-[x1,y1] = ode45(ode,[0 1],0,options2);
-plot(x0,y0,'ro',x1,y1,'k*');
+ 
+
 
 
 
