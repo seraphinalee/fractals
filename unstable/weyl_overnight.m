@@ -1,7 +1,7 @@
 pvals = linspace(0.05, 0.95, 19);
 l = length(pvals);
 cutoffs = linspace(0.05, 0.95, 19);
-m=2;
+m=6;
 
 for i=1:l
     for j=1:l
