@@ -1,6 +1,9 @@
 function [ mindex ] = countingfunction( eigvals,x )
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+%UNTITLED reports number of elemets of eigvals <= x
+%binary searches to x, returns the index AKA how many elements less than x
+
+
+
 mindex = 1;
 maxdex = length(eigvals);
 if x > eigvals(end)

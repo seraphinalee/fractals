@@ -15,7 +15,7 @@ unique_eigvals = customunique(eigvals,10^-8);
 V_out = zeros(length(V));
 V = real(V);
 V = V./repmat(max(abs(V)),length(V),1);
-
+V = V.*repmat(V(2,:),length(V),1)./repmat(abs(V(2,:)),length(V),1);
 
 
 for j = 1:length(indices)

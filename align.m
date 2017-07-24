@@ -1,10 +1,9 @@
 function [ input ] = align( input,tol)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
-
-
-%tol to be used
-
+%ALIGN this function takes in two column vectors and lines the first one to
+%the second
+%   First column contains only a subset of the second, with some elements
+%   missing. Both are sorted. Script lines up corresponding elements with
+%   zeros in between
 
 
 for i = 1:length(input)-1

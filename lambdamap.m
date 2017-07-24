@@ -24,7 +24,7 @@ unscaled = customunique(sort(unscaled),10^-5);
 %disp(bans/(mu0*r0)^m*3/2);
 unscaled = unscaled(1,:);
 %6 5 2*(2+r)/(1+r) 
-unscaled = customclean(unscaled, bans,10^-3);
+unscaled = customclean(unscaled, bans,10^-5);
 
 %FIXME
 %fix this tol scheme

@@ -1,17 +1,17 @@
 
-r = 10^3;
+r = 0.5;
 m=1;
 
 [mu0, mu1, r0, r1] = params(r);
 [microlaplacian,mircoplotting_points,micropoints] = laplaciangen(1,mu0, r0, r1,0);
 [microunique_eigvals, microeigvals, V] = fullspectra(microlaplacian);
-m=1;
+m=2;
 microeigvals = [microeigvals; microeigvals*(mu0*r0)*2/3];
 
 %search = 4;
 
 [smalllaplacian,smallplotting_points,smallpoints] = laplaciangen(m,mu0, r0, r1,0);
-[unique_eigvals, smalleigvals, V] = fullspectra(smalllaplacian);
+[smallunique_eigvals, smalleigvals, V] = fullspectra(smalllaplacian);
 m=m+1;
 [laplacian,plotting_points,points] = laplaciangen(m,mu0, r0, r1,0);
 [unique_eigvals, eigvals, V] = fullspectra(laplacian);
@@ -27,7 +27,7 @@ test = align([[sort(test) zeros(1,length(eigvals)-length(test))];eigvals]',10^-3
 test = [test test(:,2)*(mu0*r0)^m/3*2];
 
 
-
+microeigvals = microeigvals';
 
 % a =repmat(eigvals,120,1)
 % b = a'

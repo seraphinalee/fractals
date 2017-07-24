@@ -11,7 +11,7 @@ temp2 = power(10-48*r-264*r^2-376*r^3-174*r^4+24*r^5+28*r^6+3*sqrt(3)*sqrt(-(1+r
 forb3 = 1/6*(20+temp1+2*temp2);
 forb4 = 1/12*(40-temp1*1j*(sqrt(3)-1j)+2*1j*(sqrt(3)+1j)*temp2);
 forb5 = 1/12*(40+temp1*1j*(sqrt(3)+1j)-2*1j*(sqrt(3)-1j)*temp2);
-bans = real([forb1 forb2 forb3 forb4 forb5]);
+bans = real([forb1 forb2 forb3 forb4 forb5 6]);
 
 
 
