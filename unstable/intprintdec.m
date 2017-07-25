@@ -1,11 +1,11 @@
 
-p=0.5;
+p=10^-4;
 q=1-p;
 cutoff = 0;
 % m=1;
 % [xcors,smalllaplacian] = intervallapgen(m,p,1-p,0); %m,p,q,cutoff
 % [~,smalleigvals,smallV] = fullspectra(smalllaplacian);
-m=5;
+m=2;
 [xcors,laplacian] = intervallapgen(m,p,1-p,0); %m,p,q,cutoff
 [~,eigvals,V] = fullspectra(laplacian);
 %test = [];

@@ -31,7 +31,7 @@ laplacian = zeros(length(xcors)-2);
 pointmass = zeros(1,length(xcors)-2);
 avgmeasure = (measure(1)+measure(2))/2;
 pointmass(1) = avgmeasure;
-laplacian(1,1) = (1/avgmeasure)*(1/resistance(2));
+laplacian(1,1) = (1/avgmeasure)*(1/resistance(1));
 avgmeasure = (measure(end-1)+measure(end))/2;
 pointmass(end) = avgmeasure;
 laplacian(end,end) = (1/avgmeasure)*(1/resistance(end));
@@ -52,7 +52,6 @@ for i = 2:length(xcors)-2
     laplacian(i,i-1) = (1/avgmeasure)*(-1/resistance(i));
 end
 
-pointmass = [measure(1) pointmass measure(end)];
 
 end
 

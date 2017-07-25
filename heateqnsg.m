@@ -2,15 +2,18 @@ r = 1;
 [mu0, mu1, r0, r1] = params(r);
 m = 3;
 
-[laplacian,plotting_points,points,cells] = neumanngen(m,mu0, r0, r1,0);
+[laplacian,plotting_points,points,cells] = laplaciangen(m,mu0, r0, r1,0);
 [unique_eigvals, eigvals, V] = fullspectra(laplacian);
 V = real(V);
 
-offset = 19;
-offset = offset-1;
+
+
+offset = 18;
 num = 1;
 val = 1000;
-f = [zeros(1,offset) val*ones(1,num) zeros(1,length(V)-offset-num)];
+bckgrd = 10^-3;
+f = [bckgrd*ones(1,offset) val*ones(1,num) bckgrd*ones(1,length(V)-offset-num)];
+
 
 
 measure = zeros(1,length(points)-1);
@@ -53,9 +56,9 @@ efuncs = efuncs.*efuncref;
 efuncs = repmat(efuncs,length(ts),1,1);
 evals = repmat(permute(eigvals,[1 3 2]),length(ts),1,1);
 %activate this line for heat eqn
-evals = repmat(exp(-evals.*repmat(ts',1,1,length(eigvals))),1,length(plotting_points),1);
+%evals = repmat(exp(-evals.*repmat(ts',1,1,length(eigvals))),1,length(plotting_points),1);
 %and this one for wave eqn
-%evals = repmat(sin(sqrt(evals).*repmat(ts',1,1,length(eigvals)))./sqrt(evals),1,length(plotting_points),1);
+evals = repmat(sin(sqrt(evals).*repmat(ts',1,1,length(eigvals)))./sqrt(evals),1,length(plotting_points),1);
 u = efuncs.*evals;
 u = sum(u,3);
 
