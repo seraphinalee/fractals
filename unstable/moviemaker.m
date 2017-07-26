@@ -11,14 +11,14 @@ for j = 1:dims(1)
        zlim([-1 10])
    catch
        plot(plotting_points,u(j,:)');
-       ylim([-1 10])
+       ylim([-1 2])
    end
 
    F(j) = getframe;
    %frame = getframe(gcf);
    %writeVideo(v,frame);
 end
-movie(F,10)
+movie(F,10,60)
 %close(v);
 
 end

@@ -87,7 +87,7 @@ if length(parameters) > 1
                 if measure(j)>=cutoff^i
                     newxcors = [newxcors xcors(j)+(xcors(j+1)-xcors(j)).*[1/4 1/2 3/4 1]];
                     newmeas = [newmeas measure(j)*[p/2 (1-p)/2 (1-p)/2 p/2]];
-                    newres = [newres resistance(j)*[p/2 (1-p)/2 (1-p)/2 p/2]];
+                    newres = [newres resistance(j)*[q/2 (1-q)/2 (1-q)/2 q/2]];
                 else
                     newmeas = [newmeas measure(j)];
                     newres = [newres resistance(j)];
@@ -106,7 +106,7 @@ if length(parameters) > 1
         laplacian(1,1) = (1/avgmeasure)*(1/resistance(2));
         avgmeasure = (measure(end-1)+measure(end))/2;
         pointmass(end) = avgmeasure;
-        laplacian(end,end) = (1/avgmeasure)*(1/resistance(end));
+        laplacian(end,end) = (1/avgmeasure)*(1/resistance(end-1));
 
         for i = 2:length(xcors)-3
             avgmeasure = (measure(i)+measure(i+1))/2;
@@ -348,6 +348,8 @@ else
         points = pointmass;
 
     elseif all(type == 'i') && all(boundary == 'n')
+        
+        
         p = parameters;
         q = 1-p;
         measure = [p/2 (1-p)/2 (1-p)/2 p/2]; %base measure split
@@ -364,7 +366,7 @@ else
                 if measure(j)>=cutoff^i
                     newxcors = [newxcors xcors(j)+(xcors(j+1)-xcors(j)).*[1/4 1/2 3/4 1]];
                     newmeas = [newmeas measure(j)*[p/2 (1-p)/2 (1-p)/2 p/2]];
-                    newres = [newres resistance(j)*[p/2 (1-p)/2 (1-p)/2 p/2]];
+                    newres = [newres resistance(j)*[q/2 (1-q)/2 (1-q)/2 q/2]];
                 else
                     newmeas = [newmeas measure(j)];
                     newres = [newres resistance(j)];
@@ -380,10 +382,10 @@ else
         pointmass = zeros(1,length(xcors)-2);
         avgmeasure = (measure(1)+measure(2))/2;
         pointmass(1) = avgmeasure;
-        laplacian(1,1) = (1/avgmeasure)*(1/resistance(1));
+        laplacian(1,1) = (1/avgmeasure)*(1/resistance(2));
         avgmeasure = (measure(end-1)+measure(end))/2;
         pointmass(end) = avgmeasure;
-        laplacian(end,end) = (1/avgmeasure)*(1/resistance(end));
+        laplacian(end,end) = (1/avgmeasure)*(1/resistance(end-1));
 
         for i = 2:length(xcors)-3
             avgmeasure = (measure(i)+measure(i+1))/2;
@@ -404,7 +406,10 @@ else
         plotting_points = xcors;
         points = pointmass;
 
+        
+
     elseif all(type == 'g') && all(boundary == 'd')
+
         
         [ mu0, mu1, r0, r1 ] = params( parameters );
         

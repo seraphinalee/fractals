@@ -1,5 +1,5 @@
 
-p=0.5;
+p=0.6;
 q=1-p;
 cutoff = 0;
 m=5;
@@ -15,7 +15,7 @@ end
 %offset = round(length(xcors)/2);
 offset = 512;
 num = 1;
-val = 10;
+val = 100;
 bckgrd = 10^-3;
 f = [bckgrd*ones(1,offset) val*ones(1,num) bckgrd*ones(1,length(xcors)-2-offset-num)];
 

@@ -10,9 +10,7 @@ function [ u,plotting_points ] = heatwave(m,parameters,cutoff,t,init,type,bounda
 if type == 'i'
     plotting_points = plotting_points(2:end-1);
 end
-disp(size(plotting_points))
-disp(size(points))
-disp(size(V))
+
 f = [init(4)*ones(1,init(1)) init(3)*ones(1,init(2)) init(4)*ones(1,length(V)-init(1)-init(2))];
 
 
