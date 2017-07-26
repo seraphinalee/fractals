@@ -10,7 +10,6 @@ function [ u,plotting_points ] = heatwave(m,parameters,cutoff,t,init,type,bounda
 if type == 'i'
     plotting_points = plotting_points(2:end-1);
 end
-
 f = [init(4)*ones(1,init(1)) init(3)*ones(1,init(2)) init(4)*ones(1,length(V)-init(1)-init(2))];
 
 
@@ -46,8 +45,6 @@ catch
     for i=1:length(eigvals)
         V(:,i) = V(:,i)./sqrt(dot(V(:,i).^2,measure'));
     end
-
-
 end
 
 
