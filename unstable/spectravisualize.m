@@ -1,4 +1,5 @@
-rs = linspace(0.01,3.5,500);
+clf
+rs = linspace(5,2.32,1);
 F(length(rs)) = struct('cdata',[],'colormap',[]);
 for j = 1:length(rs)
 maps = [];
@@ -25,7 +26,7 @@ end
 plot(maps',ones(length(maps),1),'o')
 hold on
 forbs = [forb(r) (6+4*r)/(r+1)]';
-plot(forbs,ones(7,1),'ro')
+plot(forbs,ones(7,1),'r*')
 text(forbs(1),1.1,'b_{1}')
 text(forbs(2),1.1,'b_{2}')
 text(forbs(3),1.1,'b_{3}')
@@ -33,14 +34,15 @@ text(forbs(4),1.1,'b_{4}')
 text(forbs(5),1.1,'b_{5}')
 text(forbs(7),1.1,'b_{*}')
 text(forbs(6),1.1,'6')
+title(strcat('r=',num2str(r)))
 F(j) = getframe;
-clf
+%clf
 end
 
 
 
 
-
+%movie(F,10,20)
 
 
 

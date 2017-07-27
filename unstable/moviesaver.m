@@ -1,10 +1,10 @@
-function [ ] = moviemaker( u,plotting_points)
+function [ ] = moviemaker( u,plotting_points,fname)
 %UNTITLED13 Summary of this function goes here
 %   rows are ts
 %   columns are x's corresponding to points
 dims = size(u);
-F(dims(1)) = struct('cdata',[],'colormap',[]);
-
+v = VideoWriter(strcat(fname,'.mp4'),'MPEG-4');
+open(v)
 for j = 1:dims(1)
    try
        gasketgraph(plotting_points,u(j,:)');
@@ -15,12 +15,13 @@ for j = 1:dims(1)
        ylim([-1 5])
    end
 
-   F(j) = getframe;
-   %frame = getframe(gcf);
-   %writeVideo(v,frame);
+   %F(j) = getframe;
+   frame = getframe(gcf);
+   writeVideo(v,frame);
 end
-movie(F,10,60)
-%close(v);
+%movie(F,10,60)
+close(v);
 
 end
+
 
