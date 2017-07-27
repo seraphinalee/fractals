@@ -3,7 +3,7 @@ function [ ] = moviemaker( u,plotting_points)
 %   rows are ts
 %   columns are x's corresponding to points
 dims = size(u);
-F(length(dims(1))) = struct('cdata',[],'colormap',[]);
+F(dims(1)) = struct('cdata',[],'colormap',[]);
 
 for j = 1:dims(1)
    try
