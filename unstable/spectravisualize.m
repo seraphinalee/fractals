@@ -1,5 +1,5 @@
 clf
-rs = linspace(5,2.32,1);
+rs = linspace(5,1,1);
 F(length(rs)) = struct('cdata',[],'colormap',[]);
 for j = 1:length(rs)
 maps = [];

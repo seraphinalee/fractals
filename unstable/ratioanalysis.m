@@ -32,9 +32,6 @@ end
 eigvals = eigvals(mindex1:mindex2);
 eigvals = uniquetol(eigvals,(upbound-lowbound)/segs);
 
-
-
-disp(eigvals)
 plot([0;1],[eigvals',eigvals'])
 
 
