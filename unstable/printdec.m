@@ -1,3 +1,20 @@
+%
+%
+%   This script has become something of a decimation playground. There are
+%   lots of different snippets that can work together to help build the
+%   picture of decimation on SG. It's younger sibling is "intprintdec" for
+%   the interval
+%
+%
+%
+%
+
+
+
+
+
+
+
 
 
 m=1;

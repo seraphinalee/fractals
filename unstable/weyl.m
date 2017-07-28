@@ -1,3 +1,7 @@
+%Script intended for general use surrounding the production of Weyl plots
+
+
+
 ps=[0.3 0.7 0.3 0.7 0.7];
 
 [ laplacian,plotting_points,points] = laplaciangen( 5,ps,0,'i','d');

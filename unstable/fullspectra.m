@@ -1,5 +1,5 @@
 function [unique_eigvals,eigvals,V_out] = fullspectra( laplacian )
-%given laplacian matrix, gives eigvals and eigfuncs. V_out is sorted by
+%Given laplacian matrix, gives eigvals and eigfuncs. V_out is sorted by
 %eigvals in increasing order.
 laplacian = full(laplacian);
 [V,D]=eig(laplacian);

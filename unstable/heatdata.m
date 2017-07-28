@@ -1,3 +1,14 @@
+%
+%
+%
+%   A playground script for implementing and collecting data from the
+%   heatwave function. The commented block is used for plotting the same t
+%   for different values of p
+%
+%
+%
+%
+
 
 % ps = linspace(0.01,0.95,20);
 % data = zeros(length(ps),1023);
@@ -18,5 +29,5 @@
 % ylabel('x')
 
 
-[ u,plotting_points ] = heatwave(3,10^0,0,[10^-8 10^-1 10],[1 10 1000 0],'g','d','w');
-moviesaver( u,plotting_points,'test');
+[ u,plotting_points ] = heatwave(5,0.49,0,[10^-8 2*10^0 100],[1 10 1000 0],'i','d','w');
+moviemaker( u,plotting_points);

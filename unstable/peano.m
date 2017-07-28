@@ -1,4 +1,7 @@
 function ordered = peano( V, m )
+%A recursive function designed for the construction of peano curves
+
+
 %V: running order of points
 %m: how many more iterations we need to do
 

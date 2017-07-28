@@ -1,6 +1,7 @@
 function [ output ] = customclean( input,ban,tol)
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
+%Utility function, removes everything from input within tol*values of a
+%number n the ban list. Used for protecting decimation from forbidden
+%eigenvalues
 
 output = [];
 for i=1:length(input)

@@ -1,6 +1,5 @@
 function [ bans ] = forb( r )
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+%Gives the forbidden eigenvalues associated with parameter r on the gasket
 
 
 

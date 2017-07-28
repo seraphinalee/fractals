@@ -1,7 +1,9 @@
 function [ ] = moviemaker( u,plotting_points)
-%UNTITLED13 Summary of this function goes here
-%   rows are ts
-%   columns are x's corresponding to points
+%Takes u, with rows t and columns x according to plotting_points, and plays
+%the movie
+
+
+%works for sg and int
 dims = size(u);
 F(dims(1)) = struct('cdata',[],'colormap',[]);
 
@@ -12,7 +14,7 @@ for j = 1:dims(1)
        %view([-100 5])
    catch
        plot(plotting_points,u(j,:)');
-       ylim([-1 5])
+       ylim([-5 5])
    end
 
    F(j) = getframe;

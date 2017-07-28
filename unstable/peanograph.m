@@ -1,6 +1,5 @@
 function [ output_args ] = peanograph( points,z_vals,m)
-%UNTITLED5 Summary of this function goes here
-%   Detailed explanation goes here
+%Plots the peano graph of z_vals according to the linear ordering points
 
 reduce = @(x) sum((3*ones(length(x),1)).^(linspace(length(x)-1,0,length(x))').*x,1);
 peano_seq = peano([[2;2] [2;0] [0;1] [1;1] [1;2] [2;0] [0;0] [0;1] [1;2]],2*m-1);

@@ -1,6 +1,9 @@
 function [output,unscaled] = lambdamap( lambda,p,m) %the m is the "big" m
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+%Maps lambda{m} to lambda_{m+1} on the interval
+%much simpler, but follows the same structure, as lambdamap.m
+
+
+%don't have to check for forbidden e.vals here - they never show up.
 lambda = lambda/(4/(p*(1-p)))^(m-1);
 temp = 4*sqrt(1-p*lambda+p^2*lambda)/sqrt(p^2-2*p^3+p^4);
 temp1 = -4/((1-p)*p)-temp;

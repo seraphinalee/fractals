@@ -8,6 +8,13 @@ function [ laplacian,plotting_points,points,cells ] = laplaciangen( m,parameters
 %   boundary is d or n for dirichlet or neumann
 
 
+
+%Yes, there is horrible, horrible inefficiency in the way that the new
+%resistance, measure, and xcoordinates are built up via array
+%concatenation... but that computation pales in comparison the eigenvalue
+%computation and so it's not worth patching over at the moment
+
+
 if length(parameters) > 1
 
 
@@ -26,6 +33,11 @@ if length(parameters) > 1
             q = qs(i);
             %do a 4x repelem clone, following with a base unit multiplied
             %to get the desired self similar structure
+            
+            %inefficiency here - 
+            %these ought to be preallocated, and then trimmed back if
+            %necessary, instead of dynamically growing to accomade for
+            %threshold splitting
             newmeas = [];
             newres  = [];
             newxcors = [xcors(1)];

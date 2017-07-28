@@ -1,4 +1,19 @@
 
+%
+%
+%   This script has become something of a decimation playground. There are
+%   lots of different snippets that can work together to help build the
+%   picture of decimation on the interval. It's older sibling is "printdec" for
+%   the gasket
+%
+%
+%
+%
+
+
+
+
+
 p=10^-4;
 q=1-p;
 cutoff = 0;

@@ -1,6 +1,11 @@
 function [ neweigenfunc,newplotting_points,newpoints,newcells ] = funcmap(eigenfunc,lambda,r,m,plotting_points,points,cells)
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
+%Extendes eigenfunc with eval lambda to next level m, assuming parameter r.
+
+
+%needs plotting_points,points,cells etc. to get a solid understanding of
+%the cell structure (threshold splitting means we don't know much about
+%the udnerlying structure)
+%To get the next eigenvalue use lambdamap
 
 
 

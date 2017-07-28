@@ -1,3 +1,25 @@
+%
+%
+%   A general playground for all things SG and SG-related.
+%
+%
+%
+%
+%
+%
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 r = 6;
 [mu0, mu1, r0, r1] = params(r);

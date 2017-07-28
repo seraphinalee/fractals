@@ -1,6 +1,8 @@
 function [eigfuncs output_diffs hit_indices] = eigenhunt(eigenfunc,V,n,hashMap,smallplotting_points)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+%On paper, looks for eigenfunctions like eigenfunc in matrix V.
+%Returns the best n results.
+%In practice, does not always produce the best results and for that reason
+%has been effectively discontinued.
 
 reduce = @(x) sum((3*ones(length(x),1)).^(linspace(length(x)-1,0,length(x))').*x,1);
 

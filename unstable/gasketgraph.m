@@ -1,4 +1,6 @@
 function [] = gasketgraph( plotting_points,z_vals )
+%The core graphing function we use for SG. Embeds in R3
+
 %takes a row vector of column vectors
 %each column vector is a standard address with a z-value appended on the
 %end

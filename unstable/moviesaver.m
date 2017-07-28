@@ -1,7 +1,8 @@
 function [ ] = moviemaker( u,plotting_points,fname)
-%UNTITLED13 Summary of this function goes here
-%   rows are ts
-%   columns are x's corresponding to points
+%Takes u, with rows t and columns x according to plotting_points, and saves
+%to fname
+
+%works for sg and int
 dims = size(u);
 v = VideoWriter(strcat(fname,'.mp4'),'MPEG-4');
 open(v)

@@ -1,5 +1,5 @@
 function [ mindex ] = countingfunction( eigvals,x )
-%UNTITLED reports number of elemets of eigvals <= x
+%reports number of elemets of eigvals <= x
 %binary searches to x, returns the index AKA how many elements less than x
 
 

@@ -1,5 +1,5 @@
 function [ourzeros] = zeroplotter(xcors,yvals)
-%Plots a graph with zeros
+%Plots a function (interval) with its zeros
 
 ourzeros = zeros(1,length(yvals));
 
@@ -17,21 +17,6 @@ plot(xcors,[yvals zeros(length(yvals),1)])
 hold on
 plot(ourzeros,zeros(length(ourzeros),1),'ro')
 ylabel(num2str(count))            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 end

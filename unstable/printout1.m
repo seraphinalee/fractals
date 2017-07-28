@@ -1,6 +1,7 @@
 function [] = printout1(m,mu0,r0,r1,cutoff,filename)
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
+%All "printout#" files are utility scripts that we used for automating
+%printing or file generation at some point in time. We're keeping them in
+%case such automation is wanted again in the future.
 
 [laplacian,plotting_points,points] = laplaciangen(m,mu0,r0,r1,cutoff);
 [unique_eigvals,eigvals,V,indices] = fullspectra(laplacian);

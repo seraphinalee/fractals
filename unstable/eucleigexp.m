@@ -1,3 +1,15 @@
+%
+%
+%   An experimental idea that never really came to fruition. Using tiny
+%   epsilon balls to imitate SG and just solve for eigenfunctions on
+%   euclidean space w/ matlab. Didn't get very far but the code exists.
+%
+%
+%
+%
+
+
+
 f0 = @(x) 1/2*(x-[0.5,tan(60)*2]) + [0.5,tan(60)*2];
 f1 = @(x) 1/2*(x-[1,0]) + [1,0];
 f2 = @(x) 1/2*(x-[0,0]) ;

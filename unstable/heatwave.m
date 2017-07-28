@@ -1,5 +1,5 @@
 function [ u,plotting_points ] = heatwave(m,parameters,cutoff,t,init,type,boundary,eqn)
-%UNTITLED12 Summary of this function goes here
+%Solves the heat or wave function on sg or interval
 %   t is [t0,tend,numsteps]
 %   init is [offset,num,value,bckgd]
 %   type is interval or sg, i or g

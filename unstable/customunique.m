@@ -1,7 +1,11 @@
 function [ output ] = customunique( input,tol)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+%Gives the unique values of input, with tol*element of each other
+%Also keeps track of how many of each element are identified
+%Assumes list is sorted row vector
 
+
+
+%nothing too tricky here
 output = zeros(1,length(input));
 count = 0;
 counts = zeros(1,length(input));

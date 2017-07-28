@@ -1,6 +1,9 @@
-function [ outputfunc ] = funcmap(eigenfunc,lambda,p)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+function [ outputfunc ] = intfuncmap(eigenfunc,lambda,p)
+%Extendes eigenfunc with eval lambda to next level m, assuming parameter p.
+
+%To get the next eigenvalue use intlambdamap
+
+
 outputfunc = zeros(length(eigenfunc)*4-3,1);
 for i=1:length(eigenfunc)-1
    x = eigenfunc(i);
