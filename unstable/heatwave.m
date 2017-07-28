@@ -1,4 +1,4 @@
-function [ u,plotting_points ] = heatwave(m,parameters,cutoff,t,init,type,boundary,eqn)
+function [ u,plotting_points] = heatwave(m,parameters,cutoff,t,init,type,boundary,eqn)
 %Solves the heat or wave function on sg or interval
 %   t is [t0,tend,numsteps]
 %   init is [offset,num,value,bckgd]
@@ -51,7 +51,6 @@ end
 
 
 ts = linspace(t(1),t(2),t(3));
-
 
 
 efuncs = permute(V,[3,1,2]);
