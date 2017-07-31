@@ -48,8 +48,6 @@ catch
 end
 
 
-
-
 ts = linspace(t(1),t(2),t(3));
 
 

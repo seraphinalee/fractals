@@ -14,7 +14,7 @@ for j = 1:dims(1)
        %view([-100 5])
    catch
        plot(plotting_points,[u(j,:)' u2(j,:)']);
-       ylim([-5 5])
+       ylim([-0.1 5])
    end
 
    F(j) = getframe;

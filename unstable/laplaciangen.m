@@ -417,6 +417,8 @@ else
 
         plotting_points = xcors;
         points = pointmass;
+        
+
 
         
 

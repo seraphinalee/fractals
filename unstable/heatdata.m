@@ -32,10 +32,10 @@ t0 = 10^-6;
 tend = 8*10^-2;
 ts = 200;
 
-test = 0.9;
-[ u,plotting_points] = heatwave(5,0.5,0,[t0 tend ts],[400 1 1023 0],'i','n','h');
+test = 0.99;
+[ u,plotting_points] = heatwave(5,0.5,0,[t0 tend ts],[512 1 1023 0],'i','n','h');
 [testlaplacian,~,points] = laplaciangen(5,test,0,'i','n');
-[ u2,plotting_points ] = heatwave(5,test,0,[t0 tend ts],[400 1 9.7656e-04*1023/points(401) 0],'i','n','h');
+[ u2,plotting_points ] = heatwave(5,test,0,[t0 tend ts],[512 1 9.7656e-04*1023/points(513) 0],'i','n','h');
 [stdlaplacian,~,points] = laplaciangen(5,0.5,0,'i','n');
 [~,stdeigvals,~] = fullspectra( stdlaplacian );
 [~,testeigvals,V] = fullspectra( testlaplacian );
