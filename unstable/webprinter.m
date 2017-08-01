@@ -15,18 +15,18 @@ for k=1:length(mvals)
             [x,eigvals,V] = fullspectra(laplacian);        
             mkdir(strcat('./limiteigfns/',num2str(m)),num2str(abs(log10(1-p))))
             csvwrite(strcat('./limiteigfns/', num2str(m), '/', num2str(abs(log10(1-p))), '/', 'eigvals.csv'),eigvals')
-        for i=1:(length(V)-mod(length(V),6))/6+1
-            for l=1:6
-                index=(i-1)*6+l;
-                filename=num2str(i);
-                if(index < length(V)+1)
-                    subplot(3,2,l)
-                    plot(xcors(1:end),(V(1,index)/abs(V(1,index))).*[0;V(:,index);0])
-                    xlabel(strcat("m=",num2str(m), " p=",num2str(p), " \lambda_{",num2str(index),"}=",num2str(eigvals(index))))
-                end
-            end
-        print(strcat('.\limiteigfns\', num2str(m), '\', num2str(abs(log10(1-p))), '\', filename),'-dpdf', '-bestfit')
-        clf
-        end
+%         for i=1:(length(V)-mod(length(V),6))/6+1
+%             for l=1:6
+%                 index=(i-1)*6+l;
+%                 filename=num2str(i);
+%                 if(index < length(V)+1)
+%                     subplot(3,2,l)
+%                     plot(xcors(1:end),(V(1,index)/abs(V(1,index))).*[0;V(:,index);0])
+%                     xlabel(strcat("m=",num2str(m), " p=",num2str(p), " \lambda_{",num2str(index),"}=",num2str(eigvals(index))))
+%                 end
+%             end
+%             print(strcat('.\limiteigfns\', num2str(m), '\', num2str(abs(log10(1-p))), '\', filename),'-dpdf', '-bestfit')
+%             clf
+%         end
     end
 end
