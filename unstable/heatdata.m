@@ -28,19 +28,16 @@
 % ylabel('x')
 
 
-t0 = 10^-6;
-tend = 8*10^-2;
-ts = 200;
+t0 = 10^-4;
+tend = 2*10^-0;
+ts = 400;
 
-test = 0.99;
-[ u,plotting_points] = heatwave(5,0.5,0,[t0 tend ts],[512 1 1023 0],'i','n','h');
-[testlaplacian,~,points] = laplaciangen(5,test,0,'i','n');
-[ u2,plotting_points ] = heatwave(5,test,0,[t0 tend ts],[512 1 9.7656e-04*1023/points(513) 0],'i','n','h');
-[stdlaplacian,~,points] = laplaciangen(5,0.5,0,'i','n');
-[~,stdeigvals,~] = fullspectra( stdlaplacian );
-[~,testeigvals,V] = fullspectra( testlaplacian );
 
-moviemaker2( u,u2,plotting_points);
+[ u,plotting_points] = heatwave(3,1,0,[t0 tend ts],[19 1 1000 0],'g','d','w');
+
+
+
+moviesaver( u,plotting_points,'gasketwavestd');
 
 
 

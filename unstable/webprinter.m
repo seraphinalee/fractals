@@ -3,7 +3,7 @@
 
 
 
-rvals=[10^-1 10^-2 10^-3 10^-4 10^-5 10^-6 10^-7 10^-8];
+rvals=[10^1 10^2 10^3 10^4 10^5 10^6 10^7 10^8];
 mvals=[1,2,3];
 
 for k=1:length(mvals)
@@ -14,13 +14,14 @@ for k=1:length(mvals)
         mkdir(strcat('./limiteigfns/',num2str(m)),num2str(abs(log10(r))));
         [ laplacian,plotting_points,points,cells ] = laplaciangen( m,r,0,'g','d');
         [unique_eigvals, eigvals, V] = fullspectra(laplacian);
-        for i=1:length(V)
-            filename=num2str(i);
-            gasketgraph(plotting_points,V(:,i));
-            xlabel(strcat("m=",num2str(m), " r=",num2str(r), " \lambda_{",num2str(i),"}=",num2str(eigvals(i))))
-            savefig(gcf,strcat('./limiteigfns/', num2str(m), '/', num2str(j), '/', filename, '.fig'))
-            clf
-        end
+        csvwrite(strcat('./limiteigfns/', num2str(m), '/', num2str(abs(log10(r))), '/', 'eigvals.csv'),eigvals')
+%         for i=1:length(V)
+%             filename=num2str(i);
+%             gasketgraph(plotting_points,V(:,i));
+%             xlabel(strcat("m=",num2str(m), " r=",num2str(r), " \lambda_{",num2str(i),"}=",num2str(eigvals(i))))
+%             savefig(gcf,strcat('./limiteigfns/', num2str(m), '/', num2str(j), '/', filename, '.fig'))
+%             clf
+%         end
     end
 end
 
