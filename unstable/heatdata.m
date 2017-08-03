@@ -33,11 +33,11 @@ tend = 2*10^-0;
 ts = 400;
 
 
-[ u,plotting_points] = heatwave(3,1,0,[t0 tend ts],[19 1 1000 0],'g','d','w');
+[ u,plotting_points] = heatwave(3,0.01,0,[t0 tend ts],[19 1 10000 0],'g','d','w');
 
 
 
-moviesaver( u,plotting_points,'gasketwavestd');
+moviesaver( u,plotting_points,'gasketwavelow');
 
 
 
