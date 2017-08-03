@@ -14,21 +14,31 @@
 
 
 
-p=1-10^-3;
+p=10^-6;
 cutoff = 0;
-m=3;
+m=1;
 [smalllaplacian,smallplotting_points] = laplaciangen(m,p,0,'i','d'); %m,p,q,cutoff
 [~,smalleigvals,smallV] = fullspectra(smalllaplacian);
 m=m+1;
 [laplacian,plotting_points,points] = laplaciangen(m,p,0,'i','d'); %m,p,q,cutoff
 [~,eigvals,V] = fullspectra(laplacian);
-test = [];
-for i=1:length(smalleigvals)
-    test = [test intlambdamap(smalleigvals(i),p,m)];
-end
-test = sort(test)';
-test = align([[test; zeros(length(eigvals)-length(test),1)] eigvals'],10^-7);
-test = [test test*(p*(1-p)/4)^(m)];
+
+toprint = [eigvals' round(V',3)];
+
+
+%test = [];
+% for i=1:length(smalleigvals)
+%     test = [test intlambdamap(smalleigvals(i),p,m)];
+% end
+
+
+
+% test = sort(test)';
+% test = align([[test; zeros(length(eigvals)-length(test),1)] eigvals'],10^-7);
+% test = [test test*(p*(1-p)/4)^(m)];
+
+
+
 %V = [zeros(1,length(V)); V; zeros(1,length(V))];
 %for i=1:length(V)-2
 %    plot(V(:,i))
@@ -47,12 +57,12 @@ test = [test test*(p*(1-p)/4)^(m)];
 %V = round(V,1)
 
 
-for i =[1 2 3 4 8 12 13 16]
-    plot(plotting_points,[0;V(:,i);0])
-    ylim([-1 1])
-    xlabel(num2str(i))
-    print('-Plp2ndfloor','-bestfit')
-end
+% for i =[1 2 3 4 8 12 13 16]
+%     plot(plotting_points,[0;V(:,i);0])
+%     ylim([-1 1])
+%     xlabel(num2str(i))
+%     print('-Plp2ndfloor','-bestfit')
+% end
 
 
 

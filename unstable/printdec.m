@@ -15,8 +15,8 @@
 
 
 
-r=10;
-m=1;
+r=1;
+m=2;
 [ mu0, mu1, r0, r1 ] = params( r );
 % [mu0, mu1, r0, r1] = params(r);
 % [microlaplacian,mircoplotting_points,micropoints] = laplaciangen(1,mu0, r0, r1,0);
