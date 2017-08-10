@@ -5,10 +5,10 @@
 
 
 
-clf
+
 
 %rs to test
-rs = linspace(5,1,1);
+rs = linspace(0.01,2,50);
 F(length(rs)) = struct('cdata',[],'colormap',[]);
 
 %for each r...
@@ -37,13 +37,8 @@ for j = 1:length(rs)
         unscaled = unscaled(1,:);
         %6 5 2*(2+r)/(1+r) 
         unscaled = customclean(unscaled, bans,10^-5);
-        try
-            map(1,index:index+4) = unscaled;
-            index = index + 5;
-        catch
-            map(1,idnex:index+2) = unscaled;
-            index = index + 3;
-        end
+        maps(1,index:index+length(unscaled)-1) = unscaled;
+        index = index + length(unscaled);
     end
     %then plot these shmears, and add on all of the forbidden eigenvalues
     %with labels
@@ -61,13 +56,13 @@ for j = 1:length(rs)
     title(strcat('r=',num2str(r)))
     %capture frame for movie
     F(j) = getframe;
-    %clf
+    clf
 end
 
 
 
 %Uncomment to see the result
-%movie(F,10,20)
+movie(F,10,20)
 
 
 
