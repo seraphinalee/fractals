@@ -11,31 +11,36 @@
 
 
 
+rs = linspace(0.1,3,40);
+data = zeros(length(rs),1);
 
+for i=1:length(rs)
+    r = rs(i);
+    [ laplacian] = laplaciangen(3,r,0,'g','n');
+    [~,eigvals] = fullspectra(laplacian);
+    data(i,1)= eigvals(2);
+end
 
+plot(rs',data)
 
-
-
-
-
-
-
-
-r = 6;
-[mu0, mu1, r0, r1] = params(r);
-%search = 4;
-m=3;
-
-%[smalllaplacian,smallplotting_points,smallpoints] = laplaciangen(2,mu0, r0, r1,0);
-%[laplacian,plotting_points,points] = neumann(4,mu0, r0, r1,0);
-
-[laplacian,plotting_points,points,cells] = laplaciangen(3,mu0, r0, r1,0);
-
-%[V,D] = partialspectra(laplacian,30);
-%r = twin(r);
-%[mu0, mu1, r0, r1] = params(r);
-[unique_eigvals, eigvals, V] = fullspectra(laplacian);
-ratioanalysis(eigvals,1.5,3,10^-4);
+% 
+% 
+% 
+% r = 6;
+% [mu0, mu1, r0, r1] = params(r);
+% %search = 4;
+% m=3;
+% 
+% %[smalllaplacian,smallplotting_points,smallpoints] = laplaciangen(2,mu0, r0, r1,0);
+% %[laplacian,plotting_points,points] = neumann(4,mu0, r0, r1,0);
+% 
+% [laplacian,plotting_points,points,cells] = laplaciangen(3,mu0, r0, r1,0);
+% 
+% %[V,D] = partialspectra(laplacian,30);
+% %r = twin(r);
+% %[mu0, mu1, r0, r1] = params(r);
+% [unique_eigvals, eigvals, V] = fullspectra(laplacian);
+% ratioanalysis(eigvals,1.5,3,10^-4);
 
 %[a,b]=lambdamap(eigvals(40),r,3);
 %[extension,newplotting_points,newpoints,newcells] = funcmap(V(:,40),min(b),r,3,plotting_points,points,cells);

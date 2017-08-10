@@ -15,8 +15,8 @@
 
 
 
-r=2;
-m=1;
+r=10^4;
+m=2;
 [ mu0, mu1, r0, r1 ] = params( r );
 % [mu0, mu1, r0, r1] = params(r);
 % [microlaplacian,mircoplotting_points,micropoints] = laplaciangen(1,mu0, r0, r1,0);
@@ -31,20 +31,22 @@ m=1;
 m=m+1;
 [ laplacian,plotting_points,points,cells ] = laplaciangen( m,r,0,'g','d');
 [unique_eigvals, eigvals, V] = fullspectra(laplacian);
-[a,b] = funcmap(smallV(:,1),eigvals(1)*2/3*(mu0*r0)^m,r,m,smallplotting_points,smallpoints,smallcells);
-hold on
-gasketgraph(b,a)
-gasketgraph(plotting_points,V(:,1))
+
+%hold on
+
+%gasketgraph(plotting_points,V(:,1))
 test = [];
 for i=1:length(smalleigvals)
 %for i=1:1
      test= [test lambdamap(abs(smalleigvals(i)),r,m)];
 end
-
+[a,b] = funcmap(V(:,1),test(1)*2/3*(mu0*r0)^(m+1),r,m+1,plotting_points,points,cells);
+gasketgraph(b,-a)
 
 [ mu0, mu1, r0, r1 ] = params( r );
-test = align([[sort(test) zeros(1,length(eigvals)-length(test))];eigvals]',10^-5);
+test = [[sort(test) zeros(1,length(eigvals)-length(test))];eigvals]';
 test = [test test(:,2)*(mu0*r0)^m/3*2];
+smalleigvals = [smalleigvals; smalleigvals*(mu0*r0)^(m-1)/3*2];
 
 
 

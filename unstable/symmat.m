@@ -86,5 +86,5 @@ for i = 1:length(cells)
     end
 end
 
-
-
+[V,D]=eig(laplacian);
+%V = real(double(subs(V,r,2)));

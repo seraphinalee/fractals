@@ -28,16 +28,16 @@
 % ylabel('x')
 
 
-t0 = 10^-4;
-tend = 2*10^-0;
-ts = 400;
+t0 = 10^-8;
+tend = 10^-7;
+ts = 100;
 
 
-[ u,plotting_points] = heatwave(3,0.01,0,[t0 tend ts],[19 1 10000 0],'g','d','w');
+[ u,plotting_points] = heatwave(5,0.52,0,[t0 tend ts],[512 1 10000 0],'i','d','w');
 
 
 
-moviesaver( u,plotting_points,'gasketwavelow');
+moviemaker( u,plotting_points);
 
 
 

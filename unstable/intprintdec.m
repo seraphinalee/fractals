@@ -14,17 +14,17 @@
 
 
 
-p=10^-6;
+p=10^-3;
 cutoff = 0;
-m=1;
+m=3;
 [smalllaplacian,smallplotting_points] = laplaciangen(m,p,0,'i','d'); %m,p,q,cutoff
 [~,smalleigvals,smallV] = fullspectra(smalllaplacian);
 m=m+1;
 [laplacian,plotting_points,points] = laplaciangen(m,p,0,'i','d'); %m,p,q,cutoff
 [~,eigvals,V] = fullspectra(laplacian);
-
+eigvals = [eigvals;eigvals/(4/(p*(1-p)))^2];
 toprint = [eigvals' round(V',3)];
-
+plot(plotting_points,[0;V(:,1);0])
 
 %test = [];
 % for i=1:length(smalleigvals)
